@@ -1,48 +1,268 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.team5.EightsFrame">
-  <grid id="27dc6" binding="boardPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="0" left="0" bottom="0" right="0"/>
+  <grid id="27dc6" binding="boardPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="11" width="500" height="400"/>
+      <xy x="20" y="20" width="1550" height="496"/>
     </constraints>
     <properties>
       <background color="-16400347"/>
-      <foreground color="-16400347"/>
+      <preferredSize width="1280" height="800"/>
+      <requestFocusEnabled value="true"/>
     </properties>
     <border type="none"/>
     <children>
-      <grid id="b4c24" binding="startPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
+      <grid id="9fb72" binding="playerPanel" layout-manager="GridBagLayout">
+        <constraints border-constraint="South"/>
         <properties>
-          <background color="-12517120"/>
-          <enabled value="true"/>
-          <foreground color="-4475205"/>
+          <background color="-16400347"/>
           <opaque value="true"/>
+          <preferredSize width="0" height="300"/>
           <visible value="true"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="30a65" class="javax.swing.JButton" binding="start">
+          <grid id="53008" binding="handPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <enabled value="true"/>
-              <horizontalAlignment value="0"/>
-              <text value="Start Game"/>
+              <background color="-16420843"/>
+              <preferredSize width="1280" height="175"/>
             </properties>
-          </component>
-          <component id="33aec" class="javax.swing.JLabel">
+            <border type="none"/>
+            <children>
+              <component id="7140" class="javax.swing.JButton" binding="card1Button" default-binding="true">
+                <constraints/>
+                <properties>
+                  <alignmentY value="0.0"/>
+                  <autoscrolls value="false"/>
+                  <horizontalAlignment value="0"/>
+                  <icon value="com/team5/PNG-cards(inHand)/2_of_clubs.png"/>
+                  <preferredSize width="82" height="164"/>
+                  <selected value="false"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="cc146" class="javax.swing.JButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <preferredSize width="82" height="164"/>
+                  <selected value="false"/>
+                  <text value="Card2"/>
+                </properties>
+              </component>
+              <component id="1e511" class="javax.swing.JButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <preferredSize width="82" height="164"/>
+                  <selected value="false"/>
+                  <text value="Card3"/>
+                </properties>
+              </component>
+              <component id="bb72f" class="javax.swing.JButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <preferredSize width="82" height="164"/>
+                  <selected value="false"/>
+                  <text value="Card4"/>
+                </properties>
+              </component>
+              <component id="5f650" class="javax.swing.JButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <preferredSize width="82" height="164"/>
+                  <selected value="false"/>
+                  <text value="Card5"/>
+                </properties>
+              </component>
+              <component id="226bf" class="javax.swing.JButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <preferredSize width="82" height="164"/>
+                  <selected value="false"/>
+                  <text value="Card6"/>
+                </properties>
+              </component>
+              <component id="f237f" class="javax.swing.JButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <preferredSize width="82" height="164"/>
+                  <selected value="false"/>
+                  <text value="Card7"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="aab68" binding="actionPanel" layout-manager="FlowLayout" hgap="50" vgap="5" flow-align="1">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
-              <text value="EIGHTS GAME"/>
+              <background color="-16400347"/>
+              <preferredSize width="0" height="125"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="ace42" class="javax.swing.JButton" binding="drawButton">
+                <constraints/>
+                <properties>
+                  <preferredSize width="100" height="40"/>
+                  <text value="Draw"/>
+                </properties>
+              </component>
+              <component id="6aaf5" class="javax.swing.JButton" binding="playButton">
+                <constraints/>
+                <properties>
+                  <preferredSize width="100" height="40"/>
+                  <text value="Play"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="f3b9b" binding="scorePanel" layout-manager="FlowLayout" hgap="100" vgap="5" flow-align="1">
+        <constraints border-constraint="North"/>
+        <properties>
+          <background color="-16400347"/>
+          <doubleBuffered value="true"/>
+          <preferredSize width="0" height="200"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="2753b" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="Player 1's Card Count:"/>
             </properties>
           </component>
+          <component id="afd48" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="Player 2's Card Count:"/>
+            </properties>
+          </component>
+          <component id="5aab6" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="Player 3's Card Count:"/>
+            </properties>
+          </component>
+          <component id="56a92" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="Player 4's Card Count:"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="a9f3c" binding="centerPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <background color="-16400347"/>
+          <foreground color="-4475205"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="96b78" binding="spacePanel1" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints/>
+            <properties>
+              <background color="-16400347"/>
+              <preferredSize width="120" height="200"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="68dc5" binding="drawPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints/>
+            <properties>
+              <preferredSize width="100" height="200"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="62766" class="javax.swing.JLabel">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <icon value="com/team5/PNG-cards/CardBack1.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="b3361" binding="spacePanel2" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints/>
+            <properties>
+              <background color="-16400347"/>
+              <preferredSize width="100" height="200"/>
+            </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="3bff2" binding="playPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints/>
+            <properties>
+              <preferredSize width="100" height="200"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="6e34f" class="javax.swing.JLabel">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <icon value="com/team5/PNG-cards/4_of_hearts.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="26551" binding="changeSuitPanel" layout-manager="GridBagLayout">
+            <constraints/>
+            <properties>
+              <background color="-16420843"/>
+              <preferredSize width="115" height="150"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="ea7ca" class="javax.swing.JButton" binding="clubsButton" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="    Clubs    "/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="32495" class="javax.swing.JButton" binding="diamondsButton" default-binding="true">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="Diamonds"/>
+                </properties>
+              </component>
+              <component id="4a4a5" class="javax.swing.JButton" binding="heartsButton" default-binding="true">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="Hearts"/>
+                </properties>
+              </component>
+              <component id="fa8cb" class="javax.swing.JButton" binding="spadesButton" default-binding="true">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <gridbag weightx="0.0" weighty="0.0"/>
+                </constraints>
+                <properties>
+                  <text value="Spades"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
         </children>
       </grid>
     </children>

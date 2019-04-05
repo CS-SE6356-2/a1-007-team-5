@@ -1,38 +1,50 @@
 package com.team5;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 
+
+//EightsFrame class which encapsulates the main game GUI. Uses JFrame forms for structure. Due to the usage of JFrame forms,
+//the .java file will seem incomplete
 public class EightsFrame extends JFrame
 {
-    private JButton start;
-    private JPanel boardPanel;
-    private JPanel startPanel;
+    private static final int WIDTH = 1280;
+    private static final int HEIGHT = 800;
 
-    DummyEightsCore dummyCore = new DummyEightsCore();
+    private JPanel boardPanel;
+    private JPanel playerPanel;
+    private JPanel scorePanel;
+    private JPanel centerPanel;
+    private JPanel drawPanel;
+    private JPanel spacePanel2;
+    private JPanel playPanel;
+    private JButton clubsButton;
+    private JPanel changeSuitPanel;
+    private JPanel handPanel;
+    private JButton card1Button;
+    private JPanel actionPanel;
+    private JButton drawButton;
+    private JButton playButton;
+    private JButton diamondsButton;
+    private JButton heartsButton;
+    private JButton spadesButton;
+    private JPanel spacePanel1;
+
+    private DummyEightsCore testCore;
 
     public EightsFrame()
     {
-        //Program ends when JFrame window is closed
-        setDefaultCloseOperation(EightsFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        setSize(WIDTH, HEIGHT);
+        setContentPane(boardPanel);
 
-        add(boardPanel);
-        add(startPanel);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        setTitle("This is a test frame");
-        setSize(650,500);
+        testCore = new DummyEightsCore();
+    }
 
-        //Unsure if action listener should be within the constructor of the GUI, but I'm rollin' with it for the moment
-        start.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                dummyCore.initializeGame();
-                start.setVisible(false);
-                startPanel.setVisible(false);
-            }
-        });
+    private void createUIComponents()
+    {
+        // TODO: place custom component creation code here
     }
 }
