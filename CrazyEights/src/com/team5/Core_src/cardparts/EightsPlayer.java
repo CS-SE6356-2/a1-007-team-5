@@ -10,5 +10,17 @@ package cardparts;
  * @author quanicus
  */
 public class EightsPlayer extends Player{
+
+    public void playCard(){
+
+
+
+    }
+
+    public void discard(Card c){
+
+
+
+    }
     
 }
