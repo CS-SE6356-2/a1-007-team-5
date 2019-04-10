@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 
 //EightsFrame class which encapsulates the main game GUI. Uses JFrame forms for structure. Due to the usage of JFrame forms,
@@ -19,7 +20,6 @@ public class EightsFrame extends JFrame
     private JButton clubsButton;
     private JPanel changeSuitPanel;
     private JPanel handPanel;
-    private JButton card1Button;
     private JPanel actionPanel;
     private JButton drawButton;
     private JButton playButton;
@@ -27,18 +27,34 @@ public class EightsFrame extends JFrame
     private JButton heartsButton;
     private JButton spadesButton;
     private JPanel spacePanel1;
+    private JButton card1Button, card2Button, card3Button, card4Button, card5Button, card6Button, card7Button ;
 
     private DummyEightsCore testCore;
 
     public EightsFrame()
     {
+
         setResizable(false);
         setSize(WIDTH, HEIGHT);
         setContentPane(boardPanel);
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        testCore = new DummyEightsCore();
+        EightsGame game = new EightsGame();
+        List<EightsPlayer> players = game.getPlayers();
+        displayHand(players.get(0));
+    }
+
+    private void displayHand(EightsPlayer player){
+
+        Hand hand = player.getHand();
+        card1Button.setText(hand.getCard(0).toString());
+        card2Button.setText(hand.getCard(1).toString());
+        card3Button.setText(hand.getCard(2).toString());
+        card4Button.setText(hand.getCard(3).toString());
+        card5Button.setText(hand.getCard(4).toString());
+        card6Button.setText(hand.getCard(5).toString());
+        card7Button.setText(hand.getCard(6).toString());
     }
 
     private void createUIComponents()

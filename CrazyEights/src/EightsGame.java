@@ -6,38 +6,36 @@ public class EightsGame{
 
 
     // Array List of Player class to hold players in the game
-    private List<EightsPlayer> gamePlayers = new ArrayList<>();
+    private List<EightsPlayer> gamePlayers;
 
     // Create card deck to draw from
-    private Deck DrawDeck = new Deck();
+    private Deck drawDeck;
 
 
     // Play Pile
+    private Card playPile;
 
 
-    public void initializeGame(){
+    public EightsGame(){
+
+        //initialize and shuffle deck
+        drawDeck = new Deck();
+        drawDeck.shuffle();
 
         // Add players to game
-        EightsPlayer p1 = new EightsPlayer();
-        gamePlayers.add(p1);
-        EightsPlayer p2 = new EightsPlayer();
-        gamePlayers.add(p2);
-        EightsPlayer p3 = new EightsPlayer();
-        gamePlayers.add(p3);
-        EightsPlayer p4 = new EightsPlayer();
-        gamePlayers.add(p4);
-
-        // Deal a card a piece to each player
+        gamePlayers = new ArrayList<>();
         for(int i = 0; i < 4; i++){
-
-            gamePlayers.get(i).draw(DrawDeck);
+            gamePlayers.add(new EightsPlayer());
+            for(int j = 0; j < 7; j++)
+                drawCard(gamePlayers.get(i));
         }
 
+
         // Turn over top card and place "starter" in separate pile.
-        Card starterCard = DrawDeck.pop();
+        playPile = drawDeck.pop();
 
         // If eight add back to middle of deck.
-        if(starterCard.getFace().getValue().equals("8")){
+        if(playPile.getFace() == Face.EIGHT){
 
             // Place in middle of drawDeck
         }
@@ -46,10 +44,9 @@ public class EightsGame{
             // Push card onto playPile
         }
 
-
-
-
     }
+
+    public List<EightsPlayer> getPlayers(){ return gamePlayers;}
 
     public void takeTurn(EightsPlayer p){
 
@@ -68,7 +65,7 @@ public class EightsGame{
     public boolean drawCard(EightsPlayer p){
 
 
-        p.draw(DrawDeck);
+        p.draw(drawDeck);
 
         return false;
 

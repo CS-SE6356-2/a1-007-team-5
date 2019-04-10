@@ -10,6 +10,9 @@
  */
 public class EightsPlayer extends Player{
 
+    public EightsPlayer(){
+        super();
+    }
     public void playCard(){
 
 

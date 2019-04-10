@@ -47,6 +47,14 @@ public class Hand {
             iterator.add(card);
         }           
     }
+
+    public Card getCard(int c){
+
+        if (hand.get(c) == null)
+            return null;
+        else
+            return hand.get(c);
+    }
     
     @Override
     public String toString(){
