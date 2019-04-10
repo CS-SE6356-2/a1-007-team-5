@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.team5.EightsFrame">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="EightsFrame">
   <grid id="27dc6" binding="boardPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
       <xy x="20" y="20" width="1550" height="496"/>
@@ -38,7 +38,7 @@
                   <alignmentY value="0.0"/>
                   <autoscrolls value="false"/>
                   <horizontalAlignment value="0"/>
-                  <icon value="com/team5/PNG-cards(inHand)/2_of_clubs.png"/>
+                  <icon value="PNG-cards(inHand)/2_of_clubs.png"/>
                   <preferredSize width="82" height="164"/>
                   <selected value="false"/>
                   <text value=""/>
@@ -185,7 +185,7 @@
               <component id="62766" class="javax.swing.JLabel">
                 <constraints border-constraint="Center"/>
                 <properties>
-                  <icon value="com/team5/PNG-cards/CardBack1.png"/>
+                  <icon value="PNG-cards/CardBack1.png"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -210,7 +210,7 @@
               <component id="6e34f" class="javax.swing.JLabel">
                 <constraints border-constraint="Center"/>
                 <properties>
-                  <icon value="com/team5/PNG-cards/4_of_hearts.png"/>
+                  <icon value="PNG-cards/8_of_diamonds.png"/>
                   <text value=""/>
                 </properties>
               </component>

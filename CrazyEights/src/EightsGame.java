@@ -1,6 +1,6 @@
 
+
 import java.util.*;
-import cardparts.*;
 
 public class EightsGame{
 
@@ -62,7 +62,7 @@ public class EightsGame{
 
         // Peek at card on top of play pile and check if it matches suit or denomination
 
-
+        return false;
     }
 
     public boolean drawCard(EightsPlayer p){
@@ -70,11 +70,15 @@ public class EightsGame{
 
         p.draw(DrawDeck);
 
+        return false;
+
     }
 
     public boolean playCard(EightsPlayer p, Card c){
 
        p.discard(c);
+
+       return false;
 
     }
 

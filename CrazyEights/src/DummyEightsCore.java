@@ -1,6 +1,5 @@
-package com.team5;
-
 //This class is a dummy version of the EightsGame class, to allow the GUI team to utilize the same API, only a dummy version
+//The dummy class will be used for implementing certain aspects of the GUI's logic until the main API has been implemented
 
 public class DummyEightsCore
 {

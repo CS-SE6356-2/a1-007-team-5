@@ -1,5 +1,3 @@
-package com.team5;
-
 import javax.swing.*;
 import java.awt.*;
 
