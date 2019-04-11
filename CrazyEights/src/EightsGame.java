@@ -31,17 +31,20 @@ public class EightsGame{
         }
 
 
-        // Turn over top card and place "starter" in separate pile.
-        playPile = drawDeck.pop();
+        // Turn over top card and check
+        Card turn_card = drawDeck.pop();
 
         // If eight add back to middle of deck.
-        if(playPile.getFace() == Face.EIGHT){
+        if( turn_card.getFace() == Face.EIGHT){
 
             // Place in middle of drawDeck
+
+
         }
         else {
 
             // Push card onto playPile
+            playPile = turn_card;
         }
 
     }
@@ -58,8 +61,17 @@ public class EightsGame{
     public boolean canPlayCard(Card c){
 
         // Peek at card on top of play pile and check if it matches suit or denomination
+        if(playPile.getSuit() == c.getSuit() || playPile.getFace() == c.getFace()){
 
-        return false;
+            return true;
+        }
+        else{
+
+            return false;
+
+        }
+
+
     }
 
     public boolean drawCard(EightsPlayer p){
