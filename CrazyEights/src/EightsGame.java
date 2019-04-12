@@ -30,22 +30,31 @@ public class EightsGame{
                 drawCard(gamePlayers.get(i));
         }
 
+        Card turn_card;
 
-        // Turn over top card and check
-        Card turn_card = drawDeck.pop();
+        do{
 
-        // If eight add back to middle of deck.
-        if( turn_card.getFace() == "8"){
+            // Turn over top card and check
+            turn_card = drawDeck.pop();
 
-            // Place in middle of drawDeck
+            // If eight add back to middle of deck.
+            if(turn_card.getFace() == "EIGHT"){
+
+                // Place back in deck and shuffle
+                drawDeck.push(turn_card);
+                drawDeck.shuffle();
 
 
-        }
-        else {
+            }
+            else {
 
-            // Push card onto playPile
-            playPile = turn_card;
-        }
+                // Push card onto playPile
+                playPile = turn_card;
+            }
+
+        }while (turn_card.getFace() == "EIGHT");
+
+
 
     }
 
