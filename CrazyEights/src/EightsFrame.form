@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.team5.EightsFrame">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="EightsFrame">
   <grid id="27dc6" binding="boardPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
       <xy x="20" y="20" width="1550" height="496"/>
@@ -35,24 +35,28 @@
               <component id="7140" class="javax.swing.JButton" binding="card1Button" default-binding="true">
                 <constraints/>
                 <properties>
+                  <actionCommand value="Card1"/>
                   <alignmentY value="0.0"/>
                   <autoscrolls value="false"/>
                   <horizontalAlignment value="0"/>
-                  <icon value="com/team5/PNG-cards(inHand)/2_of_clubs.png"/>
+                  <label value="Card1"/>
                   <preferredSize width="82" height="164"/>
                   <selected value="false"/>
-                  <text value=""/>
+                  <text value="Card1"/>
                 </properties>
               </component>
-              <component id="cc146" class="javax.swing.JButton" default-binding="true">
+              <component id="cc146" class="javax.swing.JButton" binding="card2Button">
                 <constraints/>
                 <properties>
+                  <inheritsPopupMenu value="true"/>
+                  <label value="Card2"/>
+                  <name value=""/>
                   <preferredSize width="82" height="164"/>
                   <selected value="false"/>
                   <text value="Card2"/>
                 </properties>
               </component>
-              <component id="1e511" class="javax.swing.JButton" default-binding="true">
+              <component id="1e511" class="javax.swing.JButton" binding="card3Button">
                 <constraints/>
                 <properties>
                   <preferredSize width="82" height="164"/>
@@ -60,7 +64,7 @@
                   <text value="Card3"/>
                 </properties>
               </component>
-              <component id="bb72f" class="javax.swing.JButton" default-binding="true">
+              <component id="bb72f" class="javax.swing.JButton" binding="card4Button">
                 <constraints/>
                 <properties>
                   <preferredSize width="82" height="164"/>
@@ -68,7 +72,7 @@
                   <text value="Card4"/>
                 </properties>
               </component>
-              <component id="5f650" class="javax.swing.JButton" default-binding="true">
+              <component id="5f650" class="javax.swing.JButton" binding="card5Button">
                 <constraints/>
                 <properties>
                   <preferredSize width="82" height="164"/>
@@ -76,7 +80,7 @@
                   <text value="Card5"/>
                 </properties>
               </component>
-              <component id="226bf" class="javax.swing.JButton" default-binding="true">
+              <component id="226bf" class="javax.swing.JButton" binding="card6Button">
                 <constraints/>
                 <properties>
                   <preferredSize width="82" height="164"/>
@@ -84,7 +88,7 @@
                   <text value="Card6"/>
                 </properties>
               </component>
-              <component id="f237f" class="javax.swing.JButton" default-binding="true">
+              <component id="f237f" class="javax.swing.JButton" binding="card7Button">
                 <constraints/>
                 <properties>
                   <preferredSize width="82" height="164"/>
@@ -185,7 +189,7 @@
               <component id="62766" class="javax.swing.JLabel">
                 <constraints border-constraint="Center"/>
                 <properties>
-                  <icon value="com/team5/PNG-cards/CardBack1.png"/>
+                  <icon value="PNG-cards/CardBack1.png"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -210,7 +214,7 @@
               <component id="6e34f" class="javax.swing.JLabel">
                 <constraints border-constraint="Center"/>
                 <properties>
-                  <icon value="com/team5/PNG-cards/4_of_hearts.png"/>
+                  <icon value="PNG-cards/8_of_diamonds.png"/>
                   <text value=""/>
                 </properties>
               </component>
