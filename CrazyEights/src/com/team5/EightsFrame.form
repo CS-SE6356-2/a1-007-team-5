@@ -135,25 +135,25 @@
           <component id="2753b" class="javax.swing.JLabel">
             <constraints/>
             <properties>
-              <text value="Player 1's Card Count:"/>
+              <text value="Player 1's com.team5.Card Count:"/>
             </properties>
           </component>
           <component id="afd48" class="javax.swing.JLabel">
             <constraints/>
             <properties>
-              <text value="Player 2's Card Count:"/>
+              <text value="Player 2's com.team5.Card Count:"/>
             </properties>
           </component>
           <component id="5aab6" class="javax.swing.JLabel">
             <constraints/>
             <properties>
-              <text value="Player 3's Card Count:"/>
+              <text value="Player 3's com.team5.Card Count:"/>
             </properties>
           </component>
           <component id="56a92" class="javax.swing.JLabel">
             <constraints/>
             <properties>
-              <text value="Player 4's Card Count:"/>
+              <text value="Player 4's com.team5.Card Count:"/>
             </properties>
           </component>
         </children>

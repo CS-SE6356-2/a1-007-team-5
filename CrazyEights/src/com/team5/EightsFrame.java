@@ -1,4 +1,6 @@
 package com.team5;
+import javax.swing.*;
+import javax.swing.ImageIcon;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,6 +34,7 @@ public class EightsFrame extends JFrame
 
     private DummyEightsCore testCore;
 
+
     public EightsFrame()
     {
         setResizable(false);
@@ -41,6 +44,40 @@ public class EightsFrame extends JFrame
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         testCore = new DummyEightsCore();
+
+
+    }
+
+    public JButton makeGCardPlayer(Card card)
+    {
+
+        String path = "com/team5/PNG-cards-82X164";
+        //String path = "/Users/Coop/IdeaProjects/a1-007-team-5/CrazyEights/scr/com/team5/PNG-cards-82X164";
+
+        ImageIcon cardImage = new ImageIcon(path+card.getFace()+"_of_"+card.getSuit()+".png");
+
+        JButton card1Button = new JButton(cardImage);
+
+        drawButton.setBounds(640,400, 100,200);
+
+        return drawButton;
+
+    }
+
+    public JButton makeGCardCenter(Card card)
+    {
+
+        String path = "com/team5/PNG-cards";
+        //String path = "/Users/Coop/IdeaProjects/a1-007-team-5/CrazyEights/scr/com/team5/PNG-cards";
+
+        ImageIcon cardImage = new ImageIcon(path+card.getFace()+"_of_"+card.getSuit()+".png");
+
+        JButton card1Button = new JButton(cardImage);
+
+        drawButton.setBounds(640,400, 82,164);
+
+        return drawButton;
+
     }
 
     private void createUIComponents()
