@@ -11,6 +11,8 @@
 public class Player {
     
     private Hand hand;
+
+    //Player ID will be simply "Player 1" or "Player 2" and so on. It must be exactly this string for 1-4.
     private String playerID;
     
     public Player(){

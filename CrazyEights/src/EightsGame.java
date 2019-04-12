@@ -35,7 +35,7 @@ public class EightsGame{
         Card turn_card = drawDeck.pop();
 
         // If eight add back to middle of deck.
-        if( turn_card.getFace() == Face.EIGHT){
+        if( turn_card.getFace() == "8"){
 
             // Place in middle of drawDeck
 
