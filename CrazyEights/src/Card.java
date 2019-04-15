@@ -19,4 +19,8 @@ public class Card
     {
         return suit;
     }
+
+    public String toString(){
+        return face.getValue() + suit.getValue();
+    }
 }
