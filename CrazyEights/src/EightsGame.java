@@ -4,6 +4,7 @@ import java.util.*;
 
 public class EightsGame{
 
+    private final int MAX_HAND_SIZE = 13;
 
     // Array List of Player class to hold players in the game
     private List<EightsPlayer> gamePlayers;
@@ -43,8 +44,6 @@ public class EightsGame{
                 // Place back in deck and shuffle
                 drawDeck.push(turn_card);
                 drawDeck.shuffle();
-
-
             }
             else {
 
@@ -53,7 +52,6 @@ public class EightsGame{
             }
 
         }while (turn_card.getFace() == Face.EIGHT);
-
 
 
     }
@@ -66,11 +64,17 @@ public class EightsGame{
 
         // Peek at card on top of play pile and check if it matches suit or denomination
         return(playPile.getSuit() == c.getSuit() || playPile.getFace() == c.getFace());
-
-
     }
 
+    public boolean canDrawCard(EightsPlayer player){
 
+        return player.getHand().getSize() < MAX_HAND_SIZE;
+    }
+
+    public boolean isDeckEmpty(){
+
+        return drawDeck.isEmpty();
+    }
     // Return true if deck is empty otherwise false
     public Card drawCard(EightsPlayer p){
 
@@ -83,10 +87,13 @@ public class EightsGame{
 
        // Discard card
         if(p.getHand().removeCard(c)){
-
             // Set to top of playPile
             playPile = c;
 
+        }
+
+        if(p.getHand().getSize() == 0){
+            endGame();
         }
 
 
@@ -98,6 +105,33 @@ public class EightsGame{
 
        return false;
 
+    }
+
+    //Game ends by playing the last card in the hand
+    public void endGame(EightsPlayer winner){
+
+        for(EightsPlayer player: gamePlayers){
+
+            if (player != winner){
+
+                int points = player.getHand().getSize();
+                player.updateScore(-points);
+                winner.updateScore(points);
+            }
+        }
+    }
+
+    //Game ends by drawing the last card in the deck
+    public void endGame(){
+
+        EightsPlayer winner = gamePlayers.get(0);
+        for(EightsPlayer player: gamePlayers){
+
+            if(player.getHand().getSize() < winner.getHand().getSize()){
+                winner = player;
+            }
+        }
+        endGame(winner);
     }
 
     public void changeSuit(Suit s) {

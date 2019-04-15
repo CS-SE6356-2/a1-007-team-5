@@ -229,6 +229,16 @@ public class EightsFrame extends JFrame
             CardButton gDrawn = makeGCardPlayer(drawn);
             gDrawn.setVisible(true);
             handPanel.add(gDrawn);
+
+            if (!game.canDrawCard(players.get(currentPlayerIndex))){
+
+                drawButton.setVisible(false);
+            }
+
+            if (game.isDeckEmpty()){
+                //game.endGame();
+
+            }
         }
     }
 

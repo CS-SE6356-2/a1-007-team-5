@@ -48,6 +48,11 @@ public class Hand {
         }           
     }
 
+    public int getSize(){
+
+        return hand.size();
+    }
+
     public Boolean removeCard(Card card){
 
         return hand.remove(card);
