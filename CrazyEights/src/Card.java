@@ -1,21 +1,15 @@
 
 public class Card
 {
-    Face face;
-    Suit suit;
+    String face;
+    String suit;
 
-    public Card(Face f, Suit s)
-    {
-        face = f;
-        suit = s;
-    }
-
-    public Face getFace()
+    public String getFace()
     {
         return face;
     }
 
-    public Suit getSuit()
+    public String getSuit()
     {
         return suit;
     }
