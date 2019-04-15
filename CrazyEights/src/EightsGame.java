@@ -16,7 +16,7 @@ public class EightsGame{
     private Card playPile;
 
     // Suit var to hold suit for eights card played that player chose
-    private String currentSuite;
+    private String currentSuit;
 
 
     public EightsGame(){
@@ -114,16 +114,16 @@ public class EightsGame{
         switch(s){
 
             case 1:
-                currentSuite = "CLUBS";
+                currentSuit = "CLUBS";
                 break;
             case 2:
-                currentSuite = "DIAMONDS";
+                currentSuit = "DIAMONDS";
                 break;
             case 3:
-                currentSuite = "SPADES";
+                currentSuit = "SPADES";
                 break;
             case 4:
-                currentSuite = "HEARTS";
+                currentSuit = "HEARTS";
                 break;
             default:
                 break;
