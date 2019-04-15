@@ -15,9 +15,6 @@ public class EightsGame{
     // Play Pile
     private Card playPile;
 
-    // Suit var to hold suit for eights card played that player chose
-    private String currentSuit;
-
 
     public EightsGame(){
 
@@ -63,26 +60,12 @@ public class EightsGame{
 
     public List<EightsPlayer> getPlayers(){ return gamePlayers;}
 
-    public void takeTurn(EightsPlayer p){
-
-        // Interact with GUI to ask for user input
-
-
-    }
 
     // Method to check if selected card can be played by user
     public boolean canPlayCard(Card c){
 
         // Peek at card on top of play pile and check if it matches suit or denomination
-        if(playPile.getSuit() == c.getSuit() || playPile.getFace() == c.getFace()){
-
-            return true;
-        }
-        else{
-
-            return false;
-
-        }
+        return(playPile.getSuit() == c.getSuit() || playPile.getFace() == c.getFace());
 
 
     }
@@ -127,21 +110,21 @@ public class EightsGame{
 
     }
 
-    public void changeSuit(int s) {
+    public void changeSuit(Suit s) {
 
         switch(s){
 
-            case 1:
-                currentSuit = "CLUBS";
+            case CLUBS:
+                playPile = new Card(Face.EIGHT, Suit.CLUBS);
                 break;
-            case 2:
-                currentSuit = "DIAMONDS";
+            case DIAMONDS:
+                playPile = new Card(Face.EIGHT, Suit.DIAMONDS);
                 break;
-            case 3:
-                currentSuit = "SPADES";
+            case HEARTS:
+                playPile = new Card(Face.EIGHT, Suit.HEARTS);
                 break;
-            case 4:
-                currentSuit = "HEARTS";
+            case SPADES:
+                playPile = new Card(Face.EIGHT, Suit.SPADES);
                 break;
             default:
                 break;
@@ -157,4 +140,5 @@ public class EightsGame{
     {
         return playPile;
     }
+
 }
