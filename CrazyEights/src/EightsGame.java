@@ -86,12 +86,12 @@ public class EightsGame{
 
     }
 
-    public Card drawCard(EightsPlayer p){
+    public boolean drawCard(EightsPlayer p){
 
 
-        Card drawn = p.draw(drawDeck);
+        p.draw(drawDeck);
 
-        return drawn;
+        return false;
 
     }
 

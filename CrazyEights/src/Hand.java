@@ -48,6 +48,11 @@ public class Hand {
         }           
     }
 
+    public Boolean removeCard(Card card){
+
+        return hand.remove(card);
+    }
+
     public Card getCard(int c){
 
         if (hand.get(c) == null)
