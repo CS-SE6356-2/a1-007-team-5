@@ -15,6 +15,9 @@ public class EightsGame{
     // Play Pile
     private Card playPile;
 
+    // Suit var to hold suit for eights card played that player chose
+    private String currentSuite;
+
 
     public EightsGame(){
 
@@ -60,48 +63,44 @@ public class EightsGame{
 
     public List<EightsPlayer> getPlayers(){ return gamePlayers;}
 
+    public void takeTurn(EightsPlayer p){
 
-    // Method to check if selected card can be played by user
-    public boolean canPlayCard(Card c){
-
-        // Peek at card on top of play pile and check if it matches suit or denomination
-        return(playPile.getSuit() == c.getSuit() || playPile.getFace() == c.getFace());
+        // Interact with GUI to ask for user input
 
 
     }
 
+    public boolean canPlayCard(Card c){
 
-    // Return true if deck is empty otherwise false
-    public boolean drawCard(EightsPlayer p){
+        // Peek at card on top of play pile and check if it matches suit or denomination
+        if(playPile.getSuit() == c.getSuit() || playPile.getFace() == c.getFace()){
 
-        if(drawDeck.isEmpty()){
-
-            return  true;
+            return true;
         }
         else{
-
-            p.draw(drawDeck);
 
             return false;
 
         }
+
+
+    }
+
+    public boolean drawCard(EightsPlayer p){
+
+
+        p.draw(drawDeck);
+
+        return false;
 
     }
 
     //Player p plays a card c, if it is an eights card, return true. Else return false;
     public boolean playCard(EightsPlayer p, Card c){
 
-       // Discard card
-        if(p.getHand().removeCard(c)){
+       p.discard(c);
 
-            // Set to top of playPile
-            playPile = c;
-
-        }
-
-
-       // Return based on if played card is eight
-       if(playPile.getFace() == Face.EIGHT)
+       if(c.getFace() == Face.EIGHT)
        {
            return true;
        }
@@ -110,21 +109,21 @@ public class EightsGame{
 
     }
 
-    public void changeSuit(Suit s) {
+    public void changeSuit(int s) {
 
         switch(s){
 
-            case CLUBS:
-                playPile = new Card(Face.EIGHT, Suit.CLUBS);
+            case 1:
+                currentSuite = "CLUBS";
                 break;
-            case DIAMONDS:
-                playPile = new Card(Face.EIGHT, Suit.DIAMONDS);
+            case 2:
+                currentSuite = "DIAMONDS";
                 break;
-            case HEARTS:
-                playPile = new Card(Face.EIGHT, Suit.HEARTS);
+            case 3:
+                currentSuite = "SPADES";
                 break;
-            case SPADES:
-                playPile = new Card(Face.EIGHT, Suit.SPADES);
+            case 4:
+                currentSuite = "HEARTS";
                 break;
             default:
                 break;
@@ -139,5 +138,4 @@ public class EightsGame{
     {
         return playPile;
     }
-
 }

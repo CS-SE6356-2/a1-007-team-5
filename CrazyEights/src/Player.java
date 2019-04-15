@@ -31,12 +31,9 @@ public class Player {
 
     public void setID(String id) {playerID = id;}
     
-    public Card draw(Deck deck){
-
+    public void draw(Deck deck){
         Card drawCard = deck.pop();
         hand.addCard(drawCard);
-
-        return drawCard;
     }
 
 }
