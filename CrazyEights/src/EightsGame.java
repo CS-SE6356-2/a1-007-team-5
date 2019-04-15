@@ -15,6 +15,9 @@ public class EightsGame{
     // Play Pile
     private Card playPile;
 
+    // Suit var to hold suit for eights card played that player chose
+    private String currentSuite;
+
 
     public EightsGame(){
 
@@ -107,6 +110,25 @@ public class EightsGame{
     }
 
     public void changeSuit(int s) {
+
+        switch(s){
+
+            case 1:
+                currentSuite = "CLUBS";
+                break;
+            case 2:
+                currentSuite = "DIAMONDS";
+                break;
+            case 3:
+                currentSuite = "SPADES";
+                break;
+            case 4:
+                currentSuite = "HEARTS";
+                break;
+            default:
+                break;
+
+        }
 
 
     }
