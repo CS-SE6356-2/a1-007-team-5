@@ -38,7 +38,7 @@ public class EightsGame{
             turn_card = drawDeck.pop();
 
             // If eight add back to middle of deck.
-            if(turn_card.getFace() == "EIGHT"){
+            if(turn_card.getFace() == Face.EIGHT){
 
                 // Place back in deck and shuffle
                 drawDeck.push(turn_card);
@@ -52,7 +52,7 @@ public class EightsGame{
                 playPile = turn_card;
             }
 
-        }while (turn_card.getFace() == "EIGHT");
+        }while (turn_card.getFace() == Face.EIGHT);
 
 
 
