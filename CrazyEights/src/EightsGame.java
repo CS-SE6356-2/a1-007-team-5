@@ -15,6 +15,9 @@ public class EightsGame{
     // Play Pile
     private Card playPile;
 
+    // Suit var to hold suit for eights card played that player chose
+    private String currentSuite;
+
 
     public EightsGame(){
 
@@ -92,15 +95,40 @@ public class EightsGame{
 
     }
 
+    //Player p plays a card c, if it is an eights card, return true. Else return false;
     public boolean playCard(EightsPlayer p, Card c){
 
        p.discard(c);
+
+       if(c.getFace() == Face.EIGHT)
+       {
+           return true;
+       }
 
        return false;
 
     }
 
-    public void changeSuit(int s){
+    public void changeSuit(int s) {
+
+        switch(s){
+
+            case 1:
+                currentSuite = "CLUBS";
+                break;
+            case 2:
+                currentSuite = "DIAMONDS";
+                break;
+            case 3:
+                currentSuite = "SPADES";
+                break;
+            case 4:
+                currentSuite = "HEARTS";
+                break;
+            default:
+                break;
+
+        }
 
 
     }
