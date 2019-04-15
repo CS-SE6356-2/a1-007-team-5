@@ -43,18 +43,21 @@ public class EightsFrame extends JFrame
 
     private Card selectedCard;
 
+    EightsGame game;
+
 
     public EightsFrame()
     {
         setResizable(false);
         setSize(WIDTH, HEIGHT);
         setContentPane(boardPanel);
+        drawButton.addActionListener(new DrawButtonClicked());
 
         //Frame deletes when window is closed
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Construct necessary data for game
-        EightsGame game = new EightsGame();
+        game = new EightsGame();
         gHand1 = new ArrayList<>();
         gHand2 = new ArrayList<>();
         gHand3 = new ArrayList<>();
@@ -79,9 +82,6 @@ public class EightsFrame extends JFrame
         }
 
         paintHand(players.get(0));
-
-        drawButton.addActionListener(new DrawButtonClicked());
-
     }
 
     public class CardButton extends JButton
@@ -193,14 +193,16 @@ public class EightsFrame extends JFrame
         handPanel.repaint();
     }
 
+    //When the drawbutton is clicked
     public class DrawButtonClicked implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {
-            clearHand();
+
         }
     }
 
+    //When any card button is clicked
     public class CardButtonClicked implements ActionListener
     {
         CardButton gCard;
@@ -213,6 +215,15 @@ public class EightsFrame extends JFrame
         public void actionPerformed(ActionEvent e)
         {
             selectedCard = gCard.bGetCard();
+
+            if(game.canPlayCard(gCard.bGetCard()))
+            {
+                playButton.setVisible(true);
+            }
+            else
+            {
+                playButton.setVisible(false);
+            }
         }
     }
 

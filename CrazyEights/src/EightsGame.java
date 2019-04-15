@@ -106,7 +106,7 @@ public class EightsGame{
 
     }
 
-    public void changeSuit(int s){
+    public void changeSuit(int s) {
 
 
     }
