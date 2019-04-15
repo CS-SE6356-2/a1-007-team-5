@@ -31,9 +31,11 @@ public class Player {
 
     public void setID(String id) {playerID = id;}
     
-    public void draw(Deck deck){
+    public Card draw(Deck deck){
         Card drawCard = deck.pop();
         hand.addCard(drawCard);
+
+        return drawCard;
     }
 
 }

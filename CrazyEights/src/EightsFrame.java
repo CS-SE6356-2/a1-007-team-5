@@ -36,15 +36,23 @@ public class EightsFrame extends JFrame
     private JPanel spacePanel1;
     private JLabel playedCard;
 
+    private List<EightsPlayer> players;
+
     private ArrayList<JButton> gHand1;
     private ArrayList<JButton> gHand2;
     private ArrayList<JButton> gHand3;
     private ArrayList<JButton> gHand4;
 
+    private Hand pHand1;
+    private Hand pHand2;
+    private Hand pHand3;
+    private Hand pHand4;
+
     private Card selectedCard;
 
-    EightsGame game;
+    private EightsGame game;
 
+    private int currentPlayerIndex;
 
     public EightsFrame()
     {
@@ -56,6 +64,8 @@ public class EightsFrame extends JFrame
         //Frame deletes when window is closed
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        playButton.setVisible(false);
+
         //Construct necessary data for game
         game = new EightsGame();
         gHand1 = new ArrayList<>();
@@ -65,12 +75,12 @@ public class EightsFrame extends JFrame
 
         //Get list of players
         //TODO Change implementation to keep players as private members of EightsGame
-        List<EightsPlayer> players = game.getPlayers();
+        players = game.getPlayers();
 
-        Hand pHand1 = players.get(0).getHand();
-        Hand pHand2 = players.get(1).getHand();
-        Hand pHand3 = players.get(2).getHand();
-        Hand pHand4 = players.get(3).getHand();
+        pHand1 = players.get(0).getHand();
+        pHand2 = players.get(1).getHand();
+        pHand3 = players.get(2).getHand();
+        pHand4 = players.get(3).getHand();
 
         //Populate graphical hand of players initially
         for(int i = 0; i < 7; i++)
@@ -81,7 +91,12 @@ public class EightsFrame extends JFrame
             gHand4.add(makeGCardPlayer(pHand4.getCard(i)));
         }
 
-        paintHand(players.get(0));
+        currentPlayerIndex = 0;
+
+        paintHand(players.get(currentPlayerIndex));
+
+        paintPlayCard(game.getTopCard());
+
     }
 
     public class CardButton extends JButton
@@ -123,19 +138,18 @@ public class EightsFrame extends JFrame
     }
 
     //TODO make this common to all systems
-    private JButton makeGCardCenter(Card card)
+    private JLabel makeGCardCenter(Card card)
     {
+        //String path = "/resources/PNG-cards";
 
-        String path = "/resources/PNG-cards";
+        //ImageIcon cardImage = new ImageIcon(path + "/" + card.getFace() + "_of_" + card.getSuit() + ".png");
+        String title = "<html>" + card.getSuit().getValue() + "<br />" + card.getFace().getValue() + "</html>";
 
-        ImageIcon cardImage = new ImageIcon(path + "/" + card.getFace() + "_of_" + card.getSuit() + ".png");
-
-        JButton tmp = new JButton(cardImage);
+        JLabel tmp = new JLabel(title);
 
         tmp.setPreferredSize(new Dimension(100,200));
 
         return tmp;
-
     }
 
     //Given a player, paints their hand of card buttons on the proper panel
@@ -193,12 +207,28 @@ public class EightsFrame extends JFrame
         handPanel.repaint();
     }
 
+    //Clears the playpanel, and then paints the top card;
+    private void paintPlayCard(Card card)
+    {
+        playPanel.removeAll();
+        playPanel.revalidate();
+        playPanel.repaint();
+        JLabel temp = makeGCardCenter(card);
+        temp.setVisible(true);
+        playPanel.add(temp);
+    }
+
     //When the drawbutton is clicked
+    //TODO check if deck is empty and end game
+    //TODO figure out why there is a delay
     public class DrawButtonClicked implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {
-
+            Card drawn = game.drawCard(players.get(currentPlayerIndex));
+            CardButton gDrawn = makeGCardPlayer(drawn);
+            gDrawn.setVisible(true);
+            handPanel.add(gDrawn);
         }
     }
 
@@ -216,7 +246,7 @@ public class EightsFrame extends JFrame
         {
             selectedCard = gCard.bGetCard();
 
-            if(game.canPlayCard(gCard.bGetCard()))
+            if(game.canPlayCard(selectedCard))
             {
                 playButton.setVisible(true);
             }
