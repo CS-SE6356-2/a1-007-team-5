@@ -202,7 +202,7 @@ public class EightsFrame extends JFrame
         }
     }
 
-    //When any card button is clicked
+    //When any card button is clicked update the selected card member and check if its playable
     public class CardButtonClicked implements ActionListener
     {
         CardButton gCard;

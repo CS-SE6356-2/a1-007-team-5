@@ -135,6 +135,8 @@ public class EightsGame{
 
 
 
-
-
+    public Card getTopCard()
+    {
+        return playPile;
+    }
 }
