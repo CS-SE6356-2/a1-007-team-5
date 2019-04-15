@@ -70,6 +70,7 @@ public class EightsGame{
 
     }
 
+    // Method to check if selected card can be played by user
     public boolean canPlayCard(Card c){
 
         // Peek at card on top of play pile and check if it matches suit or denomination
@@ -86,21 +87,38 @@ public class EightsGame{
 
     }
 
+
+    // Return true if deck is empty otherwise false
     public boolean drawCard(EightsPlayer p){
 
+        if(drawDeck.isEmpty()){
 
-        p.draw(drawDeck);
+            return  true;
+        }
+        else{
 
-        return false;
+            p.draw(drawDeck);
+
+            return false;
+
+        }
 
     }
 
     //Player p plays a card c, if it is an eights card, return true. Else return false;
     public boolean playCard(EightsPlayer p, Card c){
 
-       p.discard(c);
+       // Discard card
+        if(p.getHand().removeCard(c)){
 
-       if(c.getFace() == Face.EIGHT)
+            // Set to top of playPile
+            playPile = c;
+
+        }
+
+
+       // Return based on if played card is eight
+       if(playPile.getFace() == Face.EIGHT)
        {
            return true;
        }
