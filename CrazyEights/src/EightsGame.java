@@ -74,16 +74,7 @@ public class EightsGame{
     public boolean canPlayCard(Card c){
 
         // Peek at card on top of play pile and check if it matches suit or denomination
-        if(playPile.getSuit() == c.getSuit() || playPile.getFace() == c.getFace()){
-
-            return true;
-        }
-        else{
-
-            return false;
-
-        }
-
+        return playPile.getSuit() == c.getSuit() || playPile.getFace() == c.getFace();
 
     }
 
