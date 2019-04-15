@@ -25,7 +25,7 @@ public class EightsGame{
         // Add players to game
         gamePlayers = new ArrayList<>();
         for(int i = 0; i < 4; i++){
-            gamePlayers.add(new EightsPlayer());
+            gamePlayers.add(new EightsPlayer(Integer.toString(i+1)));
             for(int j = 0; j < 7; j++)
                 drawCard(gamePlayers.get(i));
         }
@@ -35,7 +35,7 @@ public class EightsGame{
         Card turn_card = drawDeck.pop();
 
         // If eight add back to middle of deck.
-        if( turn_card.getFace() == "8"){
+        if( turn_card.getFace() == Face.EIGHT){
 
             // Place in middle of drawDeck
 

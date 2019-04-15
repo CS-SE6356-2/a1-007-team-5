@@ -31,72 +31,7 @@
               <preferredSize width="1280" height="175"/>
             </properties>
             <border type="none"/>
-            <children>
-              <component id="7140" class="javax.swing.JButton" binding="card1Button" default-binding="true">
-                <constraints/>
-                <properties>
-                  <actionCommand value="Card1"/>
-                  <alignmentY value="0.0"/>
-                  <autoscrolls value="false"/>
-                  <horizontalAlignment value="0"/>
-                  <label value="Card1"/>
-                  <preferredSize width="82" height="164"/>
-                  <selected value="false"/>
-                  <text value="Card1"/>
-                </properties>
-              </component>
-              <component id="cc146" class="javax.swing.JButton" binding="card2Button">
-                <constraints/>
-                <properties>
-                  <inheritsPopupMenu value="true"/>
-                  <label value="Card2"/>
-                  <name value=""/>
-                  <preferredSize width="82" height="164"/>
-                  <selected value="false"/>
-                  <text value="Card2"/>
-                </properties>
-              </component>
-              <component id="1e511" class="javax.swing.JButton" binding="card3Button">
-                <constraints/>
-                <properties>
-                  <preferredSize width="82" height="164"/>
-                  <selected value="false"/>
-                  <text value="Card3"/>
-                </properties>
-              </component>
-              <component id="bb72f" class="javax.swing.JButton" binding="card4Button">
-                <constraints/>
-                <properties>
-                  <preferredSize width="82" height="164"/>
-                  <selected value="false"/>
-                  <text value="Card4"/>
-                </properties>
-              </component>
-              <component id="5f650" class="javax.swing.JButton" binding="card5Button">
-                <constraints/>
-                <properties>
-                  <preferredSize width="82" height="164"/>
-                  <selected value="false"/>
-                  <text value="Card5"/>
-                </properties>
-              </component>
-              <component id="226bf" class="javax.swing.JButton" binding="card6Button">
-                <constraints/>
-                <properties>
-                  <preferredSize width="82" height="164"/>
-                  <selected value="false"/>
-                  <text value="Card6"/>
-                </properties>
-              </component>
-              <component id="f237f" class="javax.swing.JButton" binding="card7Button">
-                <constraints/>
-                <properties>
-                  <preferredSize width="82" height="164"/>
-                  <selected value="false"/>
-                  <text value="Card7"/>
-                </properties>
-              </component>
-            </children>
+            <children/>
           </grid>
           <grid id="aab68" binding="actionPanel" layout-manager="FlowLayout" hgap="50" vgap="5" flow-align="1">
             <constraints>
@@ -113,7 +48,7 @@
                 <constraints/>
                 <properties>
                   <preferredSize width="100" height="40"/>
-                  <text value="Draw"/>
+                  <text value="TestClear"/>
                 </properties>
               </component>
               <component id="6aaf5" class="javax.swing.JButton" binding="playButton">

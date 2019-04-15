@@ -2,7 +2,10 @@ import javax.swing.*;
 import javax.swing.ImageIcon;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +27,6 @@ public class EightsFrame extends JFrame
     private JButton clubsButton;
     private JPanel changeSuitPanel;
     private JPanel handPanel;
-    private JButton card1Button;
     private JPanel actionPanel;
     private JButton drawButton;
     private JButton playButton;
@@ -32,11 +34,14 @@ public class EightsFrame extends JFrame
     private JButton heartsButton;
     private JButton spadesButton;
     private JPanel spacePanel1;
+    private JLabel playedCard;
 
     private ArrayList<JButton> gHand1;
     private ArrayList<JButton> gHand2;
     private ArrayList<JButton> gHand3;
     private ArrayList<JButton> gHand4;
+
+    private Card selectedCard;
 
 
     public EightsFrame()
@@ -45,6 +50,7 @@ public class EightsFrame extends JFrame
         setSize(WIDTH, HEIGHT);
         setContentPane(boardPanel);
 
+        //Frame deletes when window is closed
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         //Construct necessary data for game
@@ -67,30 +73,52 @@ public class EightsFrame extends JFrame
         for(int i = 0; i < 7; i++)
         {
             gHand1.add(makeGCardPlayer(pHand1.getCard(i)));
-            gHand2.add(makeGCardPlayer(pHand1.getCard(i)));
-            gHand3.add(makeGCardPlayer(pHand1.getCard(i)));
-            gHand4.add(makeGCardPlayer(pHand1.getCard(i)));
+            gHand2.add(makeGCardPlayer(pHand2.getCard(i)));
+            gHand3.add(makeGCardPlayer(pHand3.getCard(i)));
+            gHand4.add(makeGCardPlayer(pHand4.getCard(i)));
         }
 
-        //Initialize first players hand
-        //paintHand(game.getCurrentPlayer());
+        paintHand(players.get(0));
+
+        drawButton.addActionListener(new DrawButtonClicked());
 
     }
 
-    //TODO make this common to all systems
-    private JButton makeGCardPlayer(Card card)
+    public class CardButton extends JButton
+    {
+        private Card card;
+
+        public CardButton(Card c)
+        {
+            card = c;
+            this.addActionListener(new CardButtonClicked(this));
+        }
+
+        public Card bGetCard()
+        {
+            return card;
+        }
+    }
+
+    //TODO make this common to all systems with images
+    private CardButton makeGCardPlayer(Card card)
     {
 
-        String path = "com/team5/PNG-cards-82X164";
-        //String path = "/Users/Coop/IdeaProjects/a1-007-team-5/CrazyEights/scr/com/team5/PNG-cards-82X164";
+        //String path = "PNG-cards-82X164/" + card.getFace().getValue() + "_of_" + card.getSuit().getValue() + ".png";
 
-        ImageIcon cardImage = new ImageIcon(path+card.getFace()+"_of_"+card.getSuit()+".png");
+        //ImageIcon cardImage = new ImageIcon(path);
 
-        JButton card1Button = new JButton(cardImage);
+        String title = "<html>" + card.getSuit().getValue() + "<br />" + card.getFace().getValue() + "</html>";
 
-        drawButton.setBounds(640,400, 82,164);
+        CardButton tmp = new CardButton(card);
 
-        return drawButton;
+        tmp.setText(title);
+
+        //tmp.setIcon(cardImage);
+
+        tmp.setPreferredSize(new Dimension(82,164));
+
+        return tmp;
 
     }
 
@@ -98,16 +126,15 @@ public class EightsFrame extends JFrame
     private JButton makeGCardCenter(Card card)
     {
 
-        String path = "com/team5/PNG-cards";
-        //String path = "/Users/Coop/IdeaProjects/a1-007-team-5/CrazyEights/scr/com/team5/PNG-cards";
+        String path = "/resources/PNG-cards";
 
-        ImageIcon cardImage = new ImageIcon(path+card.getFace()+"_of_"+card.getSuit()+".png");
+        ImageIcon cardImage = new ImageIcon(path + "/" + card.getFace() + "_of_" + card.getSuit() + ".png");
 
-        JButton card1Button = new JButton(cardImage);
+        JButton tmp = new JButton(cardImage);
 
-        drawButton.setBounds(640,400, 100,200);
+        tmp.setPreferredSize(new Dimension(100,200));
 
-        return drawButton;
+        return tmp;
 
     }
 
@@ -116,37 +143,41 @@ public class EightsFrame extends JFrame
     {
         switch(player.getID())
         {
-            case "Player 1":
+            case "1":
             {
                 for(int i = 0; i < gHand1.size(); i++)
                 {
+                    gHand1.get(i).setVisible(true);
                     handPanel.add(gHand1.get(i));
                 }
                 break;
             }
 
-            case "Player 2":
+            case "2":
             {
                 for(int i = 0; i < gHand1.size(); i++)
                 {
+                    gHand2.get(i).setVisible(true);
                     handPanel.add(gHand1.get(i));
                 }
                 break;
             }
 
-            case "Player 3":
+            case "3":
             {
                 for(int i = 0; i < gHand1.size(); i++)
                 {
+                    gHand3.get(i).setVisible(true);
                     handPanel.add(gHand1.get(i));
                 }
                 break;
             }
 
-            case "Player 4":
+            case "4":
             {
                 for(int i = 0; i < gHand1.size(); i++)
                 {
+                    gHand4.get(i).setVisible(true);
                     handPanel.add(gHand1.get(i));
                 }
                 break;
@@ -162,8 +193,27 @@ public class EightsFrame extends JFrame
         handPanel.repaint();
     }
 
-    private void createUIComponents()
+    public class DrawButtonClicked implements ActionListener
     {
-        // TODO: place custom component creation code here
+        public void actionPerformed(ActionEvent e)
+        {
+            clearHand();
+        }
     }
+
+    public class CardButtonClicked implements ActionListener
+    {
+        CardButton gCard;
+
+        public CardButtonClicked(CardButton c)
+        {
+            gCard = c;
+        }
+
+        public void actionPerformed(ActionEvent e)
+        {
+            selectedCard = gCard.bGetCard();
+        }
+    }
+
 }

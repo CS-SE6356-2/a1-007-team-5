@@ -9,7 +9,7 @@
  * @author quanicus
  */
 public enum Suit{
-        CLUBS("♣"), DIAMONDS("♦"), HEARTS("♥"), SPADES("♠");
+        CLUBS("clubs"), DIAMONDS("diamonds"), HEARTS("hearts"), SPADES("spades");
 
         private final String value;
 

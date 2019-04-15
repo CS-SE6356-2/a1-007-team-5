@@ -10,8 +10,8 @@
  */
 public class EightsPlayer extends Player{
 
-    public EightsPlayer(){
-        super();
+    public EightsPlayer(String id){
+        super(id);
     }
     public void playCard(){
 
