@@ -72,19 +72,9 @@ public class EightsGame{
 
 
     // Return true if deck is empty otherwise false
-    public boolean drawCard(EightsPlayer p){
+    public Card drawCard(EightsPlayer p){
 
-        if(drawDeck.isEmpty()){
-
-            return  true;
-        }
-        else{
-
-            p.draw(drawDeck);
-
-            return false;
-
-        }
+        return p.draw(drawDeck);
 
     }
 
