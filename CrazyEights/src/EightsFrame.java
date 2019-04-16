@@ -36,6 +36,7 @@ public class EightsFrame extends JFrame
 
     private List<EightsPlayer> players;
 
+    private ArrayList<JButton> gHand;
     private ArrayList<JButton> gHand1;
     private ArrayList<JButton> gHand2;
     private ArrayList<JButton> gHand3;
@@ -58,6 +59,7 @@ public class EightsFrame extends JFrame
         setSize(WIDTH, HEIGHT);
         setContentPane(boardPanel);
         drawButton.addActionListener(new DrawButtonClicked());
+        playButton.addActionListener(new PlayButtonClicked());
 
         //Frame deletes when window is closed
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -65,35 +67,35 @@ public class EightsFrame extends JFrame
         playButton.setVisible(false);
 
         //Construct necessary data for game
-        game = new EightsGame();
-        gHand1 = new ArrayList<>();
+        game = new EightsGame(4);
+        gHand = new ArrayList<>();
+        /*gHand1 = new ArrayList<>();
         gHand2 = new ArrayList<>();
         gHand3 = new ArrayList<>();
-        gHand4 = new ArrayList<>();
+        gHand4 = new ArrayList<>();*/
 
         //Get list of players
         //TODO Change implementation to keep players as private members of EightsGame
         players = game.getPlayers();
 
-        pHand1 = players.get(0).getHand();
+        /*pHand1 = players.get(0).getHand();
         pHand2 = players.get(1).getHand();
         pHand3 = players.get(2).getHand();
-        pHand4 = players.get(3).getHand();
+        pHand4 = players.get(3).getHand();*/
 
         //Populate graphical hand of players initially
-        for(int i = 0; i < 7; i++)
+        /*for(int i = 0; i < 7; i++)
         {
             gHand1.add(makeGCardPlayer(pHand1.getCard(i)));
             gHand2.add(makeGCardPlayer(pHand2.getCard(i)));
             gHand3.add(makeGCardPlayer(pHand3.getCard(i)));
             gHand4.add(makeGCardPlayer(pHand4.getCard(i)));
-        }
+        }*/
 
-        currentPlayerIndex = 0;
 
-        paintHand(players.get(currentPlayerIndex));
+        paintHand();
 
-        paintPlayCard(game.getTopCard());
+        paintPlayPile();
 
     }
 
@@ -118,14 +120,9 @@ public class EightsFrame extends JFrame
     {
 
         String path = "./CrazyEights/src/resources/PNG-cards-82X164/" + card.getFace().getValue() + "_of_" + card.getSuit().getValue() + ".png";
-
         ImageIcon cardImage = new ImageIcon(path);
 
-        String title = "<html>" + card.getSuit().getValue() + "<br />" + card.getFace().getValue() + "</html>";
-
         CardButton tmp = new CardButton(card);
-
-        tmp.setText(title);
 
         tmp.setIcon(cardImage);
 
@@ -136,14 +133,13 @@ public class EightsFrame extends JFrame
     }
 
     //TODO make this common to all systems
-    private JLabel makeGCardCenter(Card card)
+    private JLabel makeGPlayPile(Card card)
     {
-        //String path = "/resources/PNG-cards";
 
-        //ImageIcon cardImage = new ImageIcon(path + "/" + card.getFace() + "_of_" + card.getSuit() + ".png");
-        String title = "<html>" + card.getSuit().getValue() + "<br />" + card.getFace().getValue() + "</html>";
+        String path = "./CrazyEights/src/resources/PNG-cards-82X164/" + card.getFace().getValue() + "_of_" + card.getSuit().getValue() + ".png";
+        ImageIcon cardImage = new ImageIcon(path);
 
-        JLabel tmp = new JLabel(title);
+        JLabel tmp = new JLabel(cardImage);
 
         tmp.setPreferredSize(new Dimension(100,200));
 
@@ -151,9 +147,24 @@ public class EightsFrame extends JFrame
     }
 
     //Given a player, paints their hand of card buttons on the proper panel
-    private void paintHand(EightsPlayer player)
+    private void paintHand()
     {
-        switch(player.getID())
+        handPanel.removeAll();
+        List<Card> hand = game.getCurrentHand();
+        for(Card card: hand){
+
+            CardButton cButton = makeGCardPlayer(card);
+            cButton.setVisible(true);
+            handPanel.add(cButton);
+        }
+        handPanel.revalidate();
+        handPanel.repaint();
+
+        if(game.canDrawCard())
+            drawButton.setVisible(true);
+        else
+            drawButton.setVisible(false);
+        /*switch(player.getID())
         {
             case "1":
             {
@@ -194,7 +205,7 @@ public class EightsFrame extends JFrame
                 }
                 break;
             }
-        }
+        }*/
     }
 
     //Clears the handPanel of all card components
@@ -205,15 +216,16 @@ public class EightsFrame extends JFrame
         handPanel.repaint();
     }
 
-    //Clears the playpanel, and then paints the top card;
-    private void paintPlayCard(Card card)
+    //Clears the playpanel, and then paints the play pile;
+    private void paintPlayPile()
     {
+        Card playPile = game.getPlayPile();
         playPanel.removeAll();
-        playPanel.revalidate();
-        playPanel.repaint();
-        JLabel temp = makeGCardCenter(card);
+        JLabel temp = makeGPlayPile(playPile);
         temp.setVisible(true);
         playPanel.add(temp);
+        playPanel.revalidate();
+        playPanel.repaint();
     }
 
     //When the drawbutton is clicked
@@ -223,20 +235,33 @@ public class EightsFrame extends JFrame
     {
         public void actionPerformed(ActionEvent e)
         {
-            Card drawn = game.drawCard(players.get(currentPlayerIndex));
-            CardButton gDrawn = makeGCardPlayer(drawn);
+            game.drawCard();
+            paintHand();
+            /*CardButton gDrawn = makeGCardPlayer(drawn);
             gDrawn.setVisible(true);
             handPanel.add(gDrawn);
+            handPanel.revalidate();
+            handPanel.repaint();*/
 
-            if (!game.canDrawCard(players.get(currentPlayerIndex))){
+            if (!game.canDrawCard()){
 
                 drawButton.setVisible(false);
             }
 
             if (game.isDeckEmpty()){
                 game.endGame();
-
             }
+        }
+    }
+
+    public class PlayButtonClicked implements ActionListener
+    {
+        public void actionPerformed(ActionEvent e) {
+
+            game.playCard(selectedCard);
+            paintPlayPile();
+            paintHand();
+            playButton.setVisible(false);
         }
     }
 
@@ -254,7 +279,7 @@ public class EightsFrame extends JFrame
         {
             selectedCard = gCard.bGetCard();
 
-            if(game.canPlayCard(selectedCard))
+            if(game.canPlayCard(selectedCard) || selectedCard.getFace() == Face.EIGHT)
             {
                 playButton.setVisible(true);
             }

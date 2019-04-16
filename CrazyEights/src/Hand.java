@@ -20,7 +20,7 @@ public class Hand {
         hand = new ArrayList<>();
     }
     
-    public void addCard(Card card){
+    /*public void addCard(Card card){
         if(hand.isEmpty())
             hand.add(card);
         else{
@@ -46,14 +46,14 @@ public class Hand {
             }
             iterator.add(card);
         }           
-    }
+    }*/
 
     public int getSize(){
 
         return hand.size();
     }
 
-    public Boolean removeCard(Card card){
+    public Boolean discard(Card card){
 
         return hand.remove(card);
     }

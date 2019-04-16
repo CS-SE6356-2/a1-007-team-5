@@ -5,9 +5,12 @@ import java.util.*;
 public class EightsGame{
 
     private final int MAX_HAND_SIZE = 13;
+    private int numPlayers;
 
     // Array List of Player class to hold players in the game
     private List<EightsPlayer> gamePlayers;
+    private EightsPlayer currentPlayer;
+    private EightsPlayer winner;
 
     // Create card deck to draw from
     private Deck drawDeck;
@@ -17,7 +20,9 @@ public class EightsGame{
     private Card playPile;
 
 
-    public EightsGame(){
+    public EightsGame(int n){
+
+        numPlayers = n;
 
         //initialize and shuffle deck
         drawDeck = new Deck();
@@ -25,39 +30,27 @@ public class EightsGame{
 
         // Add players to game
         gamePlayers = new ArrayList<>();
-        for(int i = 0; i < 4; i++){
-            gamePlayers.add(new EightsPlayer(Integer.toString(i+1)));
-            for(int j = 0; j < 7; j++)
-                drawCard(gamePlayers.get(i));
+        for(int i = 0; i < numPlayers; i++){
+            gamePlayers.add(new EightsPlayer(i));
+            for(int j = 0; j < 5; j++)
+                gamePlayers.get(i).draw(drawDeck);
+        }
+        currentPlayer = gamePlayers.get(0);
+
+        Card turn_card = drawDeck.pop();
+        while (turn_card.getFace() == Face.EIGHT){
+
+            drawDeck.push(turn_card);
+            drawDeck.shuffle();
+            turn_card = drawDeck.pop();
         }
 
-        Card turn_card;
-
-        do{
-
-            // Turn over top card and check
-            turn_card = drawDeck.pop();
-
-            // If eight add back to middle of deck.
-            if(turn_card.getFace() == Face.EIGHT){
-
-                // Place back in deck and shuffle
-                drawDeck.push(turn_card);
-                drawDeck.shuffle();
-            }
-            else {
-
-                // Push card onto playPile
-                playPile = turn_card;
-            }
-
-        }while (turn_card.getFace() == Face.EIGHT);
-
-
+        playPile = turn_card;
     }
 
-    public List<EightsPlayer> getPlayers(){ return gamePlayers;}
+    public List<EightsPlayer> getPlayers() { return gamePlayers; }
 
+    public List<Card> getCurrentHand() { return currentPlayer.getHand(); }
 
     // Method to check if selected card can be played by user
     public boolean canPlayCard(Card c){
@@ -66,9 +59,9 @@ public class EightsGame{
         return(playPile.getSuit() == c.getSuit() || playPile.getFace() == c.getFace());
     }
 
-    public boolean canDrawCard(EightsPlayer player){
+    public boolean canDrawCard(){
 
-        return player.getHand().getSize() < MAX_HAND_SIZE;
+        return currentPlayer.getHandSize() < MAX_HAND_SIZE;
     }
 
     public boolean isDeckEmpty(){
@@ -76,45 +69,46 @@ public class EightsGame{
         return drawDeck.isEmpty();
     }
     // Return true if deck is empty otherwise false
-    public Card drawCard(EightsPlayer p){
+    public void drawCard(){
 
-        return p.draw(drawDeck);
-
+        currentPlayer.draw(drawDeck);
+        if(drawDeck.isEmpty()){
+            findWinner();
+            endGame();
+        }
     }
 
     //Player p plays a card c. Return 1 if it is an eights card, 0 if not an eight, or -1 if it's the player's last card;
-    public int playCard(EightsPlayer p, Card c){
+    public int playCard(Card c){
 
        // Discard card
-        if(p.getHand().removeCard(c)){
+        if(currentPlayer.play(c)){
             // Set to top of playPile
             playPile = c;
-
         }
 
-        if(p.getHand().getSize() == 0){
+        if(currentPlayer.getHandSize() == 0){
+
+            winner = currentPlayer;
             endGame();
             return -1;
         }
-
-
+        nextPlayer();
        // Return based on if played card is eight
        if(playPile.getFace() == Face.EIGHT)
-       {
            return 1;
-       }
        else
            return 0;
     }
 
     //Game ends by playing the last card in the hand
-    public void endGame(EightsPlayer winner){
+    public void endGame(){
 
         for(EightsPlayer player: gamePlayers){
 
             if (player != winner){
 
-                int points = player.getHand().getSize();
+                int points = player.getHandSize();
                 player.updateScore(-points);
                 winner.updateScore(points);
             }
@@ -122,16 +116,15 @@ public class EightsGame{
     }
 
     //Game ends by drawing the last card in the deck
-    public void endGame(){
+    public void findWinner(){
 
-        EightsPlayer winner = gamePlayers.get(0);
+        winner = gamePlayers.get(0);
         for(EightsPlayer player: gamePlayers){
 
-            if(player.getHand().getSize() < winner.getHand().getSize()){
+            if(player.getHandSize() < winner.getHandSize()){
                 winner = player;
             }
         }
-        endGame(winner);
     }
 
     public void changeSuit(Suit s) {
@@ -152,15 +145,17 @@ public class EightsGame{
                 break;
             default:
                 break;
-
         }
-
     }
 
-
-    public Card getTopCard()
+    public Card getPlayPile()
     {
         return playPile;
     }
 
+    private void nextPlayer(){
+
+        int id = currentPlayer.getID();
+        currentPlayer = gamePlayers.get((id + 1) % numPlayers);
+    }
 }

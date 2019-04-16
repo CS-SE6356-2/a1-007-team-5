@@ -12,7 +12,7 @@ public class EightsPlayer extends Player{
 
     private int score;
 
-    public EightsPlayer(String id){
+    public EightsPlayer(int id){
 
         super(id);
         score = 0;
@@ -23,4 +23,6 @@ public class EightsPlayer extends Player{
     public void updateScore(int points){
         score += points;
     }
+
+
 }
