@@ -32,6 +32,7 @@ public class EightsFrame extends JFrame
     private JButton heartsButton;
     private JButton spadesButton;
     private JPanel spacePanel1;
+    private JButton passButton;
     private JLabel playedCard;
 
     private List<EightsPlayer> players;
@@ -42,10 +43,6 @@ public class EightsFrame extends JFrame
     private ArrayList<JButton> gHand3;
     private ArrayList<JButton> gHand4;
 
-    private Hand pHand1;
-    private Hand pHand2;
-    private Hand pHand3;
-    private Hand pHand4;
 
     private Card selectedCard;
 
@@ -60,6 +57,7 @@ public class EightsFrame extends JFrame
         setContentPane(boardPanel);
         drawButton.addActionListener(new DrawButtonClicked());
         playButton.addActionListener(new PlayButtonClicked());
+        passButton.addActionListener(new PassButtonClicked());
 
         //Frame deletes when window is closed
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -67,7 +65,7 @@ public class EightsFrame extends JFrame
         playButton.setVisible(false);
 
         //Construct necessary data for game
-        game = new EightsGame(4);
+        game = new EightsGame(3);
         gHand = new ArrayList<>();
         /*gHand1 = new ArrayList<>();
         gHand2 = new ArrayList<>();
@@ -160,10 +158,15 @@ public class EightsFrame extends JFrame
         handPanel.revalidate();
         handPanel.repaint();
 
-        if(game.canDrawCard())
+        if(game.canDrawCard()) {
             drawButton.setVisible(true);
-        else
+            passButton.setVisible(false);
+        }
+        else{
             drawButton.setVisible(false);
+            passButton.setVisible(true);
+        }
+
         /*switch(player.getID())
         {
             case "1":
@@ -237,20 +240,20 @@ public class EightsFrame extends JFrame
         {
             game.drawCard();
             paintHand();
-            /*CardButton gDrawn = makeGCardPlayer(drawn);
-            gDrawn.setVisible(true);
-            handPanel.add(gDrawn);
-            handPanel.revalidate();
-            handPanel.repaint();*/
-
-            if (!game.canDrawCard()){
-
-                drawButton.setVisible(false);
-            }
 
             if (game.isDeckEmpty()){
                 game.endGame();
             }
+        }
+    }
+
+    public class PassButtonClicked implements ActionListener
+    {
+
+        public void actionPerformed(ActionEvent e) {
+
+            game.pass();
+            paintHand();
         }
     }
 

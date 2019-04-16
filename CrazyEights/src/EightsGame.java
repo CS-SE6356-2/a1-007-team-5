@@ -101,6 +101,10 @@ public class EightsGame{
            return 0;
     }
 
+    public void pass(){
+        nextPlayer();
+    }
+
     //Game ends by playing the last card in the hand
     public void endGame(){
 
