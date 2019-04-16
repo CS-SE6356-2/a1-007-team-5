@@ -138,12 +138,17 @@ public class EightsFrame extends JFrame
     //TODO make this common to all systems
     private JLabel makeGCardCenter(Card card)
     {
-        //String path = "/resources/PNG-cards";
+        String path = "./CrazyEights/src/resources/PNG-cards/" + card.getFace().getValue() + "_of_" + card.getSuit().getValue() + ".png";
 
-        //ImageIcon cardImage = new ImageIcon(path + "/" + card.getFace() + "_of_" + card.getSuit() + ".png");
+        ImageIcon cardImage = new ImageIcon(path);
+
         String title = "<html>" + card.getSuit().getValue() + "<br />" + card.getFace().getValue() + "</html>";
 
-        JLabel tmp = new JLabel(title);
+        JLabel tmp = new JLabel(cardImage);
+
+        tmp.setText(title);
+
+        tmp.setIcon(cardImage);
 
         tmp.setPreferredSize(new Dimension(100,200));
 
@@ -167,6 +172,7 @@ public class EightsFrame extends JFrame
 
             case "2":
             {
+
                 for(int i = 0; i < gHand1.size(); i++)
                 {
                     gHand2.get(i).setVisible(true);
@@ -177,6 +183,7 @@ public class EightsFrame extends JFrame
 
             case "3":
             {
+
                 for(int i = 0; i < gHand1.size(); i++)
                 {
                     gHand3.get(i).setVisible(true);
