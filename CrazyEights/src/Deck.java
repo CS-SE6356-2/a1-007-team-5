@@ -27,7 +27,12 @@ public class Deck {
             playDeck = new ArrayList<>(cards);
         }
 
-        public void shuffle() {
+        public void shuffle(){
+
+            Collections.shuffle(playDeck);
+        }
+
+        public void reset() {
             playDeck.clear();
             playDeck.addAll(cards);
             Collections.shuffle(playDeck);

@@ -1,41 +1,64 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
-/**
- *
- * @author quanicus
- */
 public class Player {
     
-    private Hand hand;
+    private List<Card> hand;
 
     //Player ID will be simply "1" or "2" and so on. It must be exactly this string for 1-4.
-    private String playerID;
+    private int playerID;
 
     //Constructor, must pass in a playerID string
-    public Player(String id){
-        hand = new Hand();
+    public Player(int id){
+        hand = new ArrayList<>();
         playerID = id;
     }
     
-    public Hand getHand(){
+    public List<Card> getHand(){
         return hand;
     }
+
+    public int getHandSize() { return hand.size(); }
     
-    public String getID(){
+    public int getID(){
         return playerID;
     }
 
-    public void setID(String id) {playerID = id;}
-    
-    public Card draw(Deck deck){
-        Card drawCard = deck.pop();
-        hand.addCard(drawCard);
+    public void setID(int id) {playerID = id;}
 
-        return drawCard;
+    public boolean play(Card card){
+
+        return hand.remove(card);
     }
 
+    public void draw(Deck deck){
+
+        Card drawCard = deck.pop();
+        if(hand.isEmpty())
+            hand.add(drawCard);
+        else{
+
+            ListIterator<Card> iterator = hand.listIterator();
+            while(iterator.hasNext()){
+
+                Card newCard = iterator.next();
+
+                if(drawCard.getSuit().compareTo(newCard.getSuit()) < 0){
+
+                    iterator.previous();
+                    iterator.add(drawCard);
+                    return;
+                }
+                else if(drawCard.getSuit().equals(newCard.getSuit()) &&
+                        (drawCard.getFace().compareTo(newCard.getFace()) < 0)){
+
+                    iterator.previous();
+                    iterator.add(drawCard);
+                    return;
+                }
+            }
+            iterator.add(drawCard);
+        }
+    }
 }

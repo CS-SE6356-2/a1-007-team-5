@@ -10,19 +10,19 @@
  */
 public class EightsPlayer extends Player{
 
-    public EightsPlayer(String id){
+    private int score;
+
+    public EightsPlayer(int id){
+
         super(id);
-    }
-    public void playCard(){
-
-
-
+        score = 0;
     }
 
-    public void discard(Card c){
+    public int getScore(){ return score; }
 
-
-
+    public void updateScore(int points){
+        score += points;
     }
-    
+
+
 }
