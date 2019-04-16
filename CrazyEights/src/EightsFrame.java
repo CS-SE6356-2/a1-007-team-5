@@ -33,22 +33,20 @@ public class EightsFrame extends JFrame
     private JButton spadesButton;
     private JPanel spacePanel1;
     private JButton passButton;
+    private JLabel score1;
+    private JLabel score2;
+    private JLabel score3;
+    private JLabel score4;
+    private JLabel drawLabel;
     private JLabel playedCard;
 
     private List<EightsPlayer> players;
 
     private ArrayList<JButton> gHand;
-    private ArrayList<JButton> gHand1;
-    private ArrayList<JButton> gHand2;
-    private ArrayList<JButton> gHand3;
-    private ArrayList<JButton> gHand4;
-
 
     private Card selectedCard;
 
     private EightsGame game;
-
-    private int currentPlayerIndex;
 
     public EightsFrame()
     {
@@ -67,32 +65,15 @@ public class EightsFrame extends JFrame
         //Construct necessary data for game
         game = new EightsGame(3);
         gHand = new ArrayList<>();
-        /*gHand1 = new ArrayList<>();
-        gHand2 = new ArrayList<>();
-        gHand3 = new ArrayList<>();
-        gHand4 = new ArrayList<>();*/
 
         //Get list of players
         //TODO Change implementation to keep players as private members of EightsGame
         players = game.getPlayers();
 
-        /*pHand1 = players.get(0).getHand();
-        pHand2 = players.get(1).getHand();
-        pHand3 = players.get(2).getHand();
-        pHand4 = players.get(3).getHand();*/
-
-        //Populate graphical hand of players initially
-        /*for(int i = 0; i < 7; i++)
-        {
-            gHand1.add(makeGCardPlayer(pHand1.getCard(i)));
-            gHand2.add(makeGCardPlayer(pHand2.getCard(i)));
-            gHand3.add(makeGCardPlayer(pHand3.getCard(i)));
-            gHand4.add(makeGCardPlayer(pHand4.getCard(i)));
-        }*/
-
-
+        //Paints first players hand
         paintHand();
 
+        //Paints top card of play pile
         paintPlayPile();
 
     }
@@ -166,49 +147,6 @@ public class EightsFrame extends JFrame
             drawButton.setVisible(false);
             passButton.setVisible(true);
         }
-
-        /*switch(player.getID())
-        {
-            case "1":
-            {
-                for(int i = 0; i < gHand1.size(); i++)
-                {
-                    gHand1.get(i).setVisible(true);
-                    handPanel.add(gHand1.get(i));
-                }
-                break;
-            }
-
-            case "2":
-            {
-                for(int i = 0; i < gHand1.size(); i++)
-                {
-                    gHand2.get(i).setVisible(true);
-                    handPanel.add(gHand1.get(i));
-                }
-                break;
-            }
-
-            case "3":
-            {
-                for(int i = 0; i < gHand1.size(); i++)
-                {
-                    gHand3.get(i).setVisible(true);
-                    handPanel.add(gHand1.get(i));
-                }
-                break;
-            }
-
-            case "4":
-            {
-                for(int i = 0; i < gHand1.size(); i++)
-                {
-                    gHand4.get(i).setVisible(true);
-                    handPanel.add(gHand1.get(i));
-                }
-                break;
-            }
-        }*/
     }
 
     //Clears the handPanel of all card components
@@ -239,6 +177,7 @@ public class EightsFrame extends JFrame
         public void actionPerformed(ActionEvent e)
         {
             game.drawCard();
+            updateScore();
             paintHand();
 
             if (game.isDeckEmpty()){
@@ -262,6 +201,7 @@ public class EightsFrame extends JFrame
         public void actionPerformed(ActionEvent e) {
 
             game.playCard(selectedCard);
+            updateScore();
             paintPlayPile();
             paintHand();
             playButton.setVisible(false);
@@ -291,6 +231,15 @@ public class EightsFrame extends JFrame
                 playButton.setVisible(false);
             }
         }
+    }
+
+    //Updates players scores in their JLabels at the top of the screen
+    public void updateScore()
+    {
+        score1.setText("Player 1's Count: " + players.get(0).getHandSize());
+        score2.setText("Player 2's Count: " + players.get(1).getHandSize());
+        score3.setText("Player 3's Count: " + players.get(2).getHandSize());
+        score4.setText("Player 4's Count: " + players.get(3).getHandSize());
     }
 
 }

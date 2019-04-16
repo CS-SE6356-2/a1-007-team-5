@@ -78,28 +78,28 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="2753b" class="javax.swing.JLabel">
+          <component id="2753b" class="javax.swing.JLabel" binding="score1">
             <constraints/>
             <properties>
-              <text value="Player 1's com.team5.Card Count:"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="afd48" class="javax.swing.JLabel">
+          <component id="afd48" class="javax.swing.JLabel" binding="score2">
             <constraints/>
             <properties>
-              <text value="Player 2's com.team5.Card Count:"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="5aab6" class="javax.swing.JLabel">
+          <component id="5aab6" class="javax.swing.JLabel" binding="score3">
             <constraints/>
             <properties>
-              <text value="Player 3's com.team5.Card Count:"/>
+              <text value=""/>
             </properties>
           </component>
-          <component id="56a92" class="javax.swing.JLabel">
+          <component id="56a92" class="javax.swing.JLabel" binding="score4">
             <constraints/>
             <properties>
-              <text value="Player 4's com.team5.Card Count:"/>
+              <text value=""/>
             </properties>
           </component>
         </children>
@@ -124,14 +124,16 @@
           <grid id="68dc5" binding="drawPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints/>
             <properties>
+              <background color="-16420843"/>
               <preferredSize width="100" height="200"/>
             </properties>
             <border type="none"/>
             <children>
-              <component id="62766" class="javax.swing.JLabel">
+              <component id="62766" class="javax.swing.JLabel" binding="drawLabel">
                 <constraints border-constraint="Center"/>
                 <properties>
-                  <icon value="PNG-cards/CardBack1.png"/>
+                  <background color="-4475205"/>
+                  <icon value="PNG-cards-82X164/Back_of_card.png"/>
                   <text value=""/>
                 </properties>
               </component>
@@ -149,6 +151,7 @@
           <grid id="3bff2" binding="playPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints/>
             <properties>
+              <background color="-16420843"/>
               <preferredSize width="100" height="200"/>
             </properties>
             <border type="none"/>
@@ -156,7 +159,6 @@
               <component id="6e34f" class="javax.swing.JLabel">
                 <constraints border-constraint="Center"/>
                 <properties>
-                  <icon value="PNG-cards/8_of_diamonds.png"/>
                   <text value=""/>
                 </properties>
               </component>
