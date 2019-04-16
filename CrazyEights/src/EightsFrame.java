@@ -229,6 +229,8 @@ public class EightsFrame extends JFrame
             CardButton gDrawn = makeGCardPlayer(drawn);
             gDrawn.setVisible(true);
             handPanel.add(gDrawn);
+            handPanel.revalidate();
+            handPanel.repaint();
         }
     }
 
