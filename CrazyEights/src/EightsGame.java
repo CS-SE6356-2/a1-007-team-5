@@ -82,8 +82,8 @@ public class EightsGame{
 
     }
 
-    //Player p plays a card c, if it is an eights card, return true. Else return false;
-    public boolean playCard(EightsPlayer p, Card c){
+    //Player p plays a card c. Return 1 if it is an eights card, 0 if not an eight, or -1 if it's the player's last card;
+    public int playCard(EightsPlayer p, Card c){
 
        // Discard card
         if(p.getHand().removeCard(c)){
@@ -94,17 +94,17 @@ public class EightsGame{
 
         if(p.getHand().getSize() == 0){
             endGame();
+            return -1;
         }
 
 
        // Return based on if played card is eight
        if(playPile.getFace() == Face.EIGHT)
        {
-           return true;
+           return 1;
        }
-
-       return false;
-
+       else
+           return 0;
     }
 
     //Game ends by playing the last card in the hand
@@ -154,7 +154,6 @@ public class EightsGame{
                 break;
 
         }
-
 
     }
 

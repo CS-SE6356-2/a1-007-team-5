@@ -1,8 +1,6 @@
 import javax.swing.*;
 import javax.swing.ImageIcon;
 
-import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -119,9 +117,9 @@ public class EightsFrame extends JFrame
     private CardButton makeGCardPlayer(Card card)
     {
 
-        //String path = "PNG-cards-82X164/" + card.getFace().getValue() + "_of_" + card.getSuit().getValue() + ".png";
+        String path = "./CrazyEights/src/resources/PNG-cards-82X164/" + card.getFace().getValue() + "_of_" + card.getSuit().getValue() + ".png";
 
-        //ImageIcon cardImage = new ImageIcon(path);
+        ImageIcon cardImage = new ImageIcon(path);
 
         String title = "<html>" + card.getSuit().getValue() + "<br />" + card.getFace().getValue() + "</html>";
 
@@ -129,7 +127,7 @@ public class EightsFrame extends JFrame
 
         tmp.setText(title);
 
-        //tmp.setIcon(cardImage);
+        tmp.setIcon(cardImage);
 
         tmp.setPreferredSize(new Dimension(82,164));
 
@@ -236,7 +234,7 @@ public class EightsFrame extends JFrame
             }
 
             if (game.isDeckEmpty()){
-                //game.endGame();
+                game.endGame();
 
             }
         }
