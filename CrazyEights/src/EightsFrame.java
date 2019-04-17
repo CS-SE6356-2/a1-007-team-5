@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,28 +55,45 @@ public class EightsFrame extends JFrame
         setSize(WIDTH, HEIGHT);
         setContentPane(boardPanel);
         drawButton.addActionListener(new DrawButtonClicked());
-        playButton.addActionListener(new PlayButtonClicked());
+        playButton.addActionListener(new PlayButtonClicked(this));
         passButton.addActionListener(new PassButtonClicked());
+        clubsButton.addActionListener(new SuitButtonClicked(Suit.CLUBS));
+        heartsButton.addActionListener(new SuitButtonClicked(Suit.HEARTS));
+        diamondsButton.addActionListener(new SuitButtonClicked(Suit.DIAMONDS));
+        spadesButton.addActionListener(new SuitButtonClicked(Suit.SPADES));
 
         //Frame deletes when window is closed
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        initialize();
+    }
+
+    private void initialize()
+    {
+        changeSuitPanel.setVisible(false);
+
         playButton.setVisible(false);
 
         //Construct necessary data for game
-        game = new EightsGame(3);
+        game = new EightsGame(4);
         gHand = new ArrayList<>();
 
         //Get list of players
         //TODO Change implementation to keep players as private members of EightsGame
         players = game.getPlayers();
 
+        //Set Scores visible
+        updateScore();
+        score1.setVisible(true);
+        score2.setVisible(true);
+        score3.setVisible(true);
+        score4.setVisible(true);
+
         //Paints first players hand
         paintHand();
 
         //Paints top card of play pile
         paintPlayPile();
-
     }
 
     public class CardButton extends JButton
@@ -181,7 +199,8 @@ public class EightsFrame extends JFrame
             paintHand();
 
             if (game.isDeckEmpty()){
-                game.endGame();
+                Player winner = game.endGame();
+                endGUI(winner);
             }
         }
     }
@@ -192,19 +211,53 @@ public class EightsFrame extends JFrame
         public void actionPerformed(ActionEvent e) {
 
             game.pass();
+            handPanel.setVisible(false);
+            JOptionPane.showMessageDialog(boardPanel, "Player " + game.getCurrentPlayerID() + "'s Turn!");
+            handPanel.setVisible(true);
             paintHand();
+            playButton.setVisible(false);
         }
     }
 
     public class PlayButtonClicked implements ActionListener
     {
+        //Needed to perform actions on the frame
+        EightsFrame frame;
+
+        public PlayButtonClicked(EightsFrame f)
+        {
+            frame = f;
+        }
+
         public void actionPerformed(ActionEvent e) {
 
-            game.playCard(selectedCard);
-            updateScore();
-            paintPlayPile();
-            paintHand();
-            playButton.setVisible(false);
+            int resultCode = game.playCard(selectedCard);
+
+            //Player sheds their entire hand
+            if(resultCode == -1)
+            {
+                Player winner = game.endGame();
+                frame.endGUI(winner);
+            }
+
+            //Eights card was played
+            if(resultCode == 1)
+            {
+                changeSuitPanel.setVisible(true);
+                actionPanel.setVisible(false);
+            }
+
+            //Other card
+            else
+            {
+                updateScore();
+                paintPlayPile();
+                handPanel.setVisible(false);
+                JOptionPane.showMessageDialog(boardPanel, "Player " + game.getCurrentPlayerID() + "'s Turn!");
+                handPanel.setVisible(true);
+                paintHand();
+                playButton.setVisible(false);
+            }
         }
     }
 
@@ -233,6 +286,31 @@ public class EightsFrame extends JFrame
         }
     }
 
+    public class SuitButtonClicked implements ActionListener
+    {
+        //Needed to perform actions on the frame
+        Suit suit;
+
+        public SuitButtonClicked(Suit s)
+        {
+            suit = s;
+        }
+
+        public void actionPerformed(ActionEvent e)
+        {
+            game.changeSuit(suit);
+            updateScore();
+            paintPlayPile();
+            handPanel.setVisible(false);
+            JOptionPane.showMessageDialog(boardPanel, "Player " + game.getCurrentPlayerID() + "'s Turn!");
+            actionPanel.setVisible(true);
+            handPanel.setVisible(true);
+            paintHand();
+            playButton.setVisible(false);
+            changeSuitPanel.setVisible(false);
+        }
+    }
+
     //Updates players scores in their JLabels at the top of the screen
     public void updateScore()
     {
@@ -240,6 +318,21 @@ public class EightsFrame extends JFrame
         score2.setText("Player 2's Count: " + players.get(1).getHandSize());
         score3.setText("Player 3's Count: " + players.get(2).getHandSize());
         score4.setText("Player 4's Count: " + players.get(3).getHandSize());
+    }
+
+    public void endGUI(Player winner)
+    {
+        String endMsg = "Player " + winner.getID() + " has won! Play again?";
+        int a=JOptionPane.showConfirmDialog(boardPanel,endMsg);
+
+        if(a == JOptionPane.YES_OPTION)
+        {
+            initialize();
+        }
+        else
+        {
+            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        }
     }
 
 }

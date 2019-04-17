@@ -1,10 +1,10 @@
 import java.util.List;
 
-public class GUIRunner
+public class EightsRunner
 {
     public static void main(String[] args)
     {
-        EightsFrame testFrame = new EightsFrame();
+        StartFrame testFrame = new StartFrame();
         testFrame.setVisible(true);
     }
 }

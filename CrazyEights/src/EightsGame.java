@@ -31,7 +31,7 @@ public class EightsGame{
         // Add players to game
         gamePlayers = new ArrayList<>();
         for(int i = 0; i < numPlayers; i++){
-            gamePlayers.add(new EightsPlayer(i));
+            gamePlayers.add(new EightsPlayer(i+1));
             for(int j = 0; j < 5; j++)
                 gamePlayers.get(i).draw(drawDeck);
         }
@@ -89,8 +89,7 @@ public class EightsGame{
 
         if(currentPlayer.getHandSize() == 0){
 
-            winner = currentPlayer;
-            endGame();
+            winner = currentPlayer;;
             return -1;
         }
         nextPlayer();
@@ -106,7 +105,7 @@ public class EightsGame{
     }
 
     //Game ends by playing the last card in the hand
-    public void endGame(){
+    public Player endGame(){
 
         for(EightsPlayer player: gamePlayers){
 
@@ -117,6 +116,8 @@ public class EightsGame{
                 winner.updateScore(points);
             }
         }
+
+        return winner;
     }
 
     //Game ends by drawing the last card in the deck
@@ -160,6 +161,11 @@ public class EightsGame{
     private void nextPlayer(){
 
         int id = currentPlayer.getID();
-        currentPlayer = gamePlayers.get((id + 1) % numPlayers);
+        currentPlayer = gamePlayers.get((id) % numPlayers);
+    }
+
+    public int getCurrentPlayerID()
+    {
+        return currentPlayer.getID();
     }
 }

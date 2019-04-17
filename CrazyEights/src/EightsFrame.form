@@ -51,18 +51,18 @@
                   <text value="Draw"/>
                 </properties>
               </component>
-              <component id="6aaf5" class="javax.swing.JButton" binding="playButton">
-                <constraints/>
-                <properties>
-                  <preferredSize width="100" height="40"/>
-                  <text value="Play"/>
-                </properties>
-              </component>
               <component id="58fbe" class="javax.swing.JButton" binding="passButton">
                 <constraints/>
                 <properties>
                   <preferredSize width="100" height="40"/>
                   <text value="Pass"/>
+                </properties>
+              </component>
+              <component id="6aaf5" class="javax.swing.JButton" binding="playButton">
+                <constraints/>
+                <properties>
+                  <preferredSize width="100" height="40"/>
+                  <text value="Play"/>
                 </properties>
               </component>
             </children>
@@ -133,6 +133,7 @@
                 <constraints border-constraint="Center"/>
                 <properties>
                   <background color="-4475205"/>
+                  <horizontalAlignment value="0"/>
                   <icon value="PNG-cards-82X164/Back_of_card.png"/>
                   <text value=""/>
                 </properties>
