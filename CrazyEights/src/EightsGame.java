@@ -26,14 +26,26 @@ public class EightsGame{
 
         //initialize and shuffle deck
         drawDeck = new Deck();
-        drawDeck.shuffle();
 
         // Add players to game
         gamePlayers = new ArrayList<>();
         for(int i = 0; i < numPlayers; i++){
+
             gamePlayers.add(new EightsPlayer(i+1));
-            for(int j = 0; j < 5; j++)
-                gamePlayers.get(i).draw(drawDeck);
+        }
+
+        newRound();
+    }
+
+    public void newRound(){
+
+        drawDeck.reset();
+
+        for(EightsPlayer player: gamePlayers){
+
+            player.getHand().clear();
+            for(int i = 0; i < 5; i++)
+                player.draw(drawDeck);
         }
         currentPlayer = gamePlayers.get(0);
 
@@ -46,11 +58,16 @@ public class EightsGame{
         }
 
         playPile = turn_card;
+
     }
 
     public List<EightsPlayer> getPlayers() { return gamePlayers; }
 
     public List<Card> getCurrentHand() { return currentPlayer.getHand(); }
+
+    public EightsPlayer getCurrentPlayer() { return currentPlayer; }
+
+    public EightsPlayer getWinner() { return winner; }
 
     // Method to check if selected card can be played by user
     public boolean canPlayCard(Card c){
@@ -74,7 +91,6 @@ public class EightsGame{
         currentPlayer.draw(drawDeck);
         if(drawDeck.isEmpty()){
             findWinner();
-            endGame();
         }
     }
 
@@ -105,7 +121,7 @@ public class EightsGame{
     }
 
     //Game ends by playing the last card in the hand
-    public Player endGame(){
+    public Player calcScore(){
 
         for(EightsPlayer player: gamePlayers){
 
@@ -162,10 +178,5 @@ public class EightsGame{
 
         int id = currentPlayer.getID();
         currentPlayer = gamePlayers.get((id) % numPlayers);
-    }
-
-    public int getCurrentPlayerID()
-    {
-        return currentPlayer.getID();
     }
 }
