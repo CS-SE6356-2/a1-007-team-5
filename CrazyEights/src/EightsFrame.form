@@ -69,7 +69,7 @@
           </grid>
         </children>
       </grid>
-      <grid id="f3b9b" binding="scorePanel" layout-manager="FlowLayout" hgap="100" vgap="5" flow-align="1">
+      <grid id="f3b9b" binding="topPanel" layout-manager="GridBagLayout">
         <constraints border-constraint="North"/>
         <properties>
           <background color="-16400347"/>
@@ -78,30 +78,30 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="2753b" class="javax.swing.JLabel" binding="score1">
-            <constraints/>
+          <grid id="c5874" binding="countPanel" layout-manager="FlowLayout" hgap="150" vgap="5" flow-align="1">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
             <properties>
-              <text value=""/>
+              <background color="-16400347"/>
+              <preferredSize width="1280" height="100"/>
             </properties>
-          </component>
-          <component id="afd48" class="javax.swing.JLabel" binding="score2">
-            <constraints/>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="cacee" binding="scorePanel" layout-manager="FlowLayout" hgap="150" vgap="5" flow-align="1">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <gridbag weightx="0.0" weighty="0.0"/>
+            </constraints>
             <properties>
-              <text value=""/>
+              <background color="-16400347"/>
+              <preferredSize width="1280" height="50"/>
             </properties>
-          </component>
-          <component id="5aab6" class="javax.swing.JLabel" binding="score3">
-            <constraints/>
-            <properties>
-              <text value=""/>
-            </properties>
-          </component>
-          <component id="56a92" class="javax.swing.JLabel" binding="score4">
-            <constraints/>
-            <properties>
-              <text value=""/>
-            </properties>
-          </component>
+            <border type="none"/>
+            <children/>
+          </grid>
         </children>
       </grid>
       <grid id="a9f3c" binding="centerPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
@@ -140,7 +140,7 @@
               </component>
             </children>
           </grid>
-          <grid id="b3361" binding="spacePanel2" layout-manager="BorderLayout" hgap="0" vgap="0">
+          <grid id="b3361" binding="namePanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints/>
             <properties>
               <background color="-16400347"/>
@@ -165,51 +165,63 @@
               </component>
             </children>
           </grid>
-          <grid id="26551" binding="changeSuitPanel" layout-manager="GridBagLayout">
+          <grid id="5ed16" binding="spacePanel3" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints/>
             <properties>
-              <background color="-16420843"/>
+              <background color="-16400347"/>
+              <opaque value="true"/>
               <preferredSize width="115" height="150"/>
+              <requestFocusEnabled value="false"/>
             </properties>
             <border type="none"/>
             <children>
-              <component id="ea7ca" class="javax.swing.JButton" binding="clubsButton" default-binding="true">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-                </constraints>
+              <grid id="26551" binding="changeSuitPanel" layout-manager="GridBagLayout">
+                <constraints border-constraint="Center"/>
                 <properties>
-                  <text value="    Clubs    "/>
-                  <verticalAlignment value="0"/>
+                  <background color="-16420843"/>
+                  <preferredSize width="115" height="150"/>
                 </properties>
-              </component>
-              <component id="32495" class="javax.swing.JButton" binding="diamondsButton" default-binding="true">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Diamonds"/>
-                </properties>
-              </component>
-              <component id="4a4a5" class="javax.swing.JButton" binding="heartsButton" default-binding="true">
-                <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Hearts"/>
-                </properties>
-              </component>
-              <component id="fa8cb" class="javax.swing.JButton" binding="spadesButton" default-binding="true">
-                <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
-                </constraints>
-                <properties>
-                  <text value="Spades"/>
-                </properties>
-              </component>
+                <border type="none"/>
+                <children>
+                  <component id="ea7ca" class="javax.swing.JButton" binding="clubsButton" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="    Clubs    "/>
+                      <verticalAlignment value="0"/>
+                    </properties>
+                  </component>
+                  <component id="32495" class="javax.swing.JButton" binding="diamondsButton" default-binding="true">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Diamonds"/>
+                    </properties>
+                  </component>
+                  <component id="4a4a5" class="javax.swing.JButton" binding="heartsButton" default-binding="true">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag top="0" left="0" bottom="5" right="0" weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Hearts"/>
+                    </properties>
+                  </component>
+                  <component id="fa8cb" class="javax.swing.JButton" binding="spadesButton" default-binding="true">
+                    <constraints>
+                      <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Spades"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
             </children>
           </grid>
         </children>

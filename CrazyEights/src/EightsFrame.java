@@ -18,10 +18,10 @@ public class EightsFrame extends JFrame
 
     private JPanel boardPanel;
     private JPanel playerPanel;
-    private JPanel scorePanel;
+    private JPanel topPanel;
     private JPanel centerPanel;
     private JPanel drawPanel;
-    private JPanel spacePanel2;
+    private JPanel namePanel;
     private JPanel playPanel;
     private JButton clubsButton;
     private JPanel changeSuitPanel;
@@ -34,12 +34,17 @@ public class EightsFrame extends JFrame
     private JButton spadesButton;
     private JPanel spacePanel1;
     private JButton passButton;
-    private JLabel score1;
-    private JLabel score2;
-    private JLabel score3;
-    private JLabel score4;
     private JLabel drawLabel;
+    private JPanel countPanel;
+    private JPanel scorePanel;
+    private JPanel spacePanel3;
     private JLabel playedCard;
+    private JLabel playerName;
+
+    private int playerCount;
+
+    private ArrayList<JLabel> countList;
+    private ArrayList<JLabel> scoreList;
 
     private List<EightsPlayer> players;
 
@@ -49,8 +54,10 @@ public class EightsFrame extends JFrame
 
     private EightsGame game;
 
-    public EightsFrame()
+    public EightsFrame(int count)
     {
+        playerCount = count;
+
         setResizable(false);
         setSize(WIDTH, HEIGHT);
         setContentPane(boardPanel);
@@ -75,19 +82,32 @@ public class EightsFrame extends JFrame
         playButton.setVisible(false);
 
         //Construct necessary data for game
-        game = new EightsGame(4);
+        game = new EightsGame(playerCount);
         gHand = new ArrayList<>();
 
         //Get list of players
-        //TODO Change implementation to keep players as private members of EightsGame
         players = game.getPlayers();
 
-        //Set Scores visible
-        updateScore();
-        score1.setVisible(true);
-        score2.setVisible(true);
-        score3.setVisible(true);
-        score4.setVisible(true);
+        playerName = new JLabel();
+        updateName();
+        playerName.setVisible(true);
+        namePanel.add(playerName);
+
+        countList = new ArrayList<>();
+        scoreList = new ArrayList<>();
+
+        //Initialize score and count panels
+        for(int i = 0; i < playerCount; i++)
+        {
+            JLabel cLabel = new JLabel();
+            countList.add(cLabel);
+
+            cLabel.setText("Player " + (i+1) + "'s Card Count: " + players.get(i).getHandSize());
+            countPanel.add(cLabel);
+            cLabel.setVisible(true);
+
+            //TODO DO THE SAME FOR SCORES
+        }
 
         //Paints first players hand
         paintHand();
@@ -112,7 +132,6 @@ public class EightsFrame extends JFrame
         }
     }
 
-    //TODO make this common to all systems with images
     private CardButton makeGCardPlayer(Card card)
     {
 
@@ -129,7 +148,6 @@ public class EightsFrame extends JFrame
 
     }
 
-    //TODO make this common to all systems
     private JLabel makeGPlayPile(Card card)
     {
 
@@ -212,7 +230,10 @@ public class EightsFrame extends JFrame
 
             game.pass();
             handPanel.setVisible(false);
+            playerName.setVisible(false);
             JOptionPane.showMessageDialog(boardPanel, "Player " + game.getCurrentPlayerID() + "'s Turn!");
+            updateName();
+            playerName.setVisible(true);
             handPanel.setVisible(true);
             paintHand();
             playButton.setVisible(false);
@@ -253,7 +274,10 @@ public class EightsFrame extends JFrame
                 updateScore();
                 paintPlayPile();
                 handPanel.setVisible(false);
+                playerName.setVisible(false);
                 JOptionPane.showMessageDialog(boardPanel, "Player " + game.getCurrentPlayerID() + "'s Turn!");
+                updateName();
+                playerName.setVisible(true);
                 handPanel.setVisible(true);
                 paintHand();
                 playButton.setVisible(false);
@@ -302,7 +326,10 @@ public class EightsFrame extends JFrame
             updateScore();
             paintPlayPile();
             handPanel.setVisible(false);
+            playerName.setVisible(false);
             JOptionPane.showMessageDialog(boardPanel, "Player " + game.getCurrentPlayerID() + "'s Turn!");
+            updateName();
+            playerName.setVisible(true);
             actionPanel.setVisible(true);
             handPanel.setVisible(true);
             paintHand();
@@ -314,10 +341,19 @@ public class EightsFrame extends JFrame
     //Updates players scores in their JLabels at the top of the screen
     public void updateScore()
     {
-        score1.setText("Player 1's Count: " + players.get(0).getHandSize());
-        score2.setText("Player 2's Count: " + players.get(1).getHandSize());
-        score3.setText("Player 3's Count: " + players.get(2).getHandSize());
-        score4.setText("Player 4's Count: " + players.get(3).getHandSize());
+        for(int i = 0; i < playerCount; i++)
+        {
+            countList.get(i).setText("Player " + (i+1) + "'s Card Count: " + players.get(i).getHandSize());
+        }
+
+        //TODO ADD SCORE PANEL UPDATE HERE
+    }
+
+    //Updates current playerID on screen
+    public void updateName()
+    {
+        playerName.setText("Player " + game.getCurrentPlayerID() + "'s " +
+                "Turn");
     }
 
     public void endGUI(Player winner)

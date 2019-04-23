@@ -12,6 +12,7 @@ public class StartFrame extends JFrame
     private JButton startButton;
     private JLabel authors;
     private JLabel title;
+    private JButton rulesButton;
 
     public StartFrame()
     {
@@ -35,9 +36,28 @@ public class StartFrame extends JFrame
 
         public void actionPerformed(ActionEvent e)
         {
-            startFrame.setVisible(false);
-            EightsFrame gui = new EightsFrame();
-            gui.setVisible(true);
+            int playerCount;
+            try
+            {
+                String result = JOptionPane.showInputDialog(startFrame,"Enter number of players between 2 and 4");
+
+                playerCount = Integer.parseInt(result);
+
+                if(playerCount < 2 || playerCount > 4)
+                {
+                    throw new NumberFormatException();
+                }
+
+                startFrame.setVisible(false);
+                EightsFrame gui = new EightsFrame(playerCount);
+                gui.setVisible(true);
+
+            }
+            catch(NumberFormatException excep)
+            {
+                JOptionPane.showMessageDialog(startFrame, "Error: Please enter a valid number of players between 2 and 4");
+            }
+
         }
     }
 }
