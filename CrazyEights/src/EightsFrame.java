@@ -99,13 +99,20 @@ public class EightsFrame extends JFrame
         for(int i = 0; i < playerCount; i++)
         {
             JLabel cLabel = new JLabel();
+            JLabel sLabel = new JLabel();
             countList.add(cLabel);
+            scoreList.add(sLabel);
 
+            cLabel.setPreferredSize(new Dimension(160, 20));
             cLabel.setText("Player " + (i+1) + "'s Card Count: " + players.get(i).getHandSize());
             countPanel.add(cLabel);
             cLabel.setVisible(true);
 
-            //TODO DO THE SAME FOR SCORES
+            sLabel.setPreferredSize(new Dimension(160, 20));
+            sLabel.setText("Score: " + players.get(i).getScore());
+            scorePanel.add(sLabel);
+            sLabel.setVisible(true);
+
         }
 
         //Paints first players hand
@@ -334,6 +341,7 @@ public class EightsFrame extends JFrame
         for(int i = 0; i < playerCount; i++)
         {
             countList.get(i).setText("Player " + (i+1) + "'s Card Count: " + players.get(i).getHandSize());
+            scoreList.get(i).setText("Score: " + players.get(i).getScore());
         }
 
         //TODO ADD SCORE PANEL UPDATE HERE
@@ -353,6 +361,7 @@ public class EightsFrame extends JFrame
 
         if(a == JOptionPane.YES_OPTION)
         {
+            game.calcScore();
             game.newRound();
             paintHand();
             resetButtons();

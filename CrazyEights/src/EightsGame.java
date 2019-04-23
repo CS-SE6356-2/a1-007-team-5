@@ -103,7 +103,7 @@ public class EightsGame{
 
         if(currentPlayer.getHandSize() == 0){
 
-            winner = currentPlayer;;
+            winner = currentPlayer;
             return -1;
         }
         nextPlayer();
@@ -118,8 +118,8 @@ public class EightsGame{
         nextPlayer();
     }
 
-    //Game ends by playing the last card in the hand
-    public Player calcScore(){
+    //Calculates score
+    public void calcScore(){
 
         for(EightsPlayer player: gamePlayers){
 
@@ -130,11 +130,9 @@ public class EightsGame{
                 winner.updateScore(points);
             }
         }
-        System.out.println("Score calculated");
-        return winner;
     }
 
-    //Game ends by drawing the last card in the deck
+    //Sets winner equal to the player with smallest hand size
     public void findWinner(){
 
         winner = gamePlayers.get(0);

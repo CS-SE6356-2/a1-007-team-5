@@ -78,26 +78,28 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="c5874" binding="countPanel" layout-manager="FlowLayout" hgap="150" vgap="5" flow-align="1">
+          <grid id="c5874" binding="countPanel" layout-manager="FlowLayout" hgap="150" vgap="5" flow-align="0">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
               <background color="-16400347"/>
-              <preferredSize width="1280" height="100"/>
+              <enabled value="false"/>
+              <preferredSize width="1280" height="30"/>
             </properties>
             <border type="none"/>
             <children/>
           </grid>
-          <grid id="cacee" binding="scorePanel" layout-manager="FlowLayout" hgap="150" vgap="5" flow-align="1">
+          <grid id="cacee" binding="scorePanel" layout-manager="FlowLayout" hgap="150" vgap="5" flow-align="0">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
               <gridbag weightx="0.0" weighty="0.0"/>
             </constraints>
             <properties>
               <background color="-16400347"/>
-              <preferredSize width="1280" height="50"/>
+              <enabled value="true"/>
+              <preferredSize width="1280" height="30"/>
             </properties>
             <border type="none"/>
             <children/>
