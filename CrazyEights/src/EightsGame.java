@@ -63,8 +63,6 @@ public class EightsGame{
 
     public List<EightsPlayer> getPlayers() { return gamePlayers; }
 
-    public List<Card> getCurrentHand() { return currentPlayer.getHand(); }
-
     public EightsPlayer getCurrentPlayer() { return currentPlayer; }
 
     public EightsPlayer getWinner() { return winner; }
@@ -132,7 +130,7 @@ public class EightsGame{
                 winner.updateScore(points);
             }
         }
-
+        System.out.println("Score calculated");
         return winner;
     }
 

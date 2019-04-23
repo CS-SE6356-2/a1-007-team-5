@@ -192,7 +192,8 @@ public class EightsFrame extends JFrame
     private void paintHand()
     {
         handPanel.removeAll();
-        List<Card> hand = game.getCurrentHand();
+
+        List<Card> hand = game.getCurrentPlayer().getHand();
         for(Card card: hand){
 
             CardButton cButton = makeGCardPlayer(card);
