@@ -356,12 +356,44 @@ public class EightsFrame extends JFrame
 
     public void endGUI()
     {
-        String endMsg = "Player " + game.getWinner().getID() + " has won! Play again?";
-        int a=JOptionPane.showConfirmDialog(boardPanel,endMsg);
+        StringBuilder endMsg = new StringBuilder("Player " + game.getWinner().getID() + " won this round!\n\n");
+
+        for(EightsPlayer player: players)
+            endMsg.append(String.format("%-15s", "Player " + player.getID() + ":"));
+
+        endMsg.append("\n");
+
+        for(EightsPlayer player: players)
+            endMsg.append(String.format("%-15d", player.getScore()));
+
+        endMsg.append("\n");
+
+        int pointsWon = 0;
+
+        for(EightsPlayer player: players){
+            if(player != game.getWinner())
+                pointsWon += player.getHand().size();
+        }
+
+        for(EightsPlayer player: players){
+            if(player != game.getWinner())
+                endMsg.append(String.format("%-15d", -player.getHand().size()));
+            else
+                endMsg.append(String.format("%-+15d", pointsWon));
+        }
+
+        endMsg.append("\n\n");
+        game.calcScore();
+
+        for(EightsPlayer player: players)
+            endMsg.append(String.format("%-15s", player.getScore()));
+
+        endMsg.append("Total\n\n Play another round?");
+
+        int a=JOptionPane.showConfirmDialog(boardPanel,endMsg.toString());
 
         if(a == JOptionPane.YES_OPTION)
         {
-            game.calcScore();
             game.newRound();
             paintHand();
             resetButtons();
