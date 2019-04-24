@@ -32,11 +32,18 @@ public class Player {
         return hand.remove(card);
     }
 
-    public void draw(Deck deck){
+    /*Takes a Deck argument and draws a card from it. This method removes the "top" card from the deck and adds it
+      to a player's hand. When the card is added to the hand, it is placed in order first by suit and then by face value.*/
+    public Card draw(Deck deck){
+
+        if(deck.isEmpty())
+            return null;
 
         Card drawCard = deck.pop();
-        if(hand.isEmpty())
+        if(hand.isEmpty()) {
+
             hand.add(drawCard);
+        }
         else{
 
             ListIterator<Card> iterator = hand.listIterator();
@@ -48,17 +55,16 @@ public class Player {
 
                     iterator.previous();
                     iterator.add(drawCard);
-                    return;
                 }
                 else if(drawCard.getSuit().equals(newCard.getSuit()) &&
                         (drawCard.getFace().compareTo(newCard.getFace()) < 0)){
 
                     iterator.previous();
                     iterator.add(drawCard);
-                    return;
                 }
             }
             iterator.add(drawCard);
         }
+        return drawCard;
     }
 }

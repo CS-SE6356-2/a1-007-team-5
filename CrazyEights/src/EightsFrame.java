@@ -356,17 +356,19 @@ public class EightsFrame extends JFrame
 
     public void endGUI()
     {
-        StringBuilder endMsg = new StringBuilder("Player " + game.getWinner().getID() + " won this round!\n\n");
+        String endMsg = "Player " + game.getWinner().getID() + " won this round!\n\n";
+
+        for(EightsPlayer player: players) {
+            String temp = "Player " + player.getID() + ":";
+            endMsg += String.format("%-20s", "Player " + player.getID() + ":");
+        }
+
+        endMsg += "\n";
 
         for(EightsPlayer player: players)
-            endMsg.append(String.format("%-15s", "Player " + player.getID() + ":"));
+            endMsg += String.format("%-20d", player.getScore());
 
-        endMsg.append("\n");
-
-        for(EightsPlayer player: players)
-            endMsg.append(String.format("%-15d", player.getScore()));
-
-        endMsg.append("\n");
+        endMsg += "\n";
 
         int pointsWon = 0;
 
@@ -377,20 +379,20 @@ public class EightsFrame extends JFrame
 
         for(EightsPlayer player: players){
             if(player != game.getWinner())
-                endMsg.append(String.format("%-15d", -player.getHand().size()));
+                endMsg += String.format("%-20d", -player.getHand().size());
             else
-                endMsg.append(String.format("%-+15d", pointsWon));
+                endMsg += String.format("%-20d", pointsWon);
         }
 
-        endMsg.append("\n\n");
+        endMsg += "\n\n";
         game.calcScore();
 
         for(EightsPlayer player: players)
-            endMsg.append(String.format("%-15s", player.getScore()));
+            endMsg += String.format("%-20s", player.getScore());
 
-        endMsg.append("Total\n\n Play another round?");
-
-        int a=JOptionPane.showConfirmDialog(boardPanel,endMsg.toString());
+        endMsg += "Total\n\nPlay another round?";
+        System.out.println(endMsg);
+        int a=JOptionPane.showConfirmDialog(boardPanel,endMsg);
 
         if(a == JOptionPane.YES_OPTION)
         {
