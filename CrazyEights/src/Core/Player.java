@@ -1,3 +1,8 @@
+package Core;
+
+import Core.Card;
+import Core.Deck;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -6,7 +11,7 @@ public class Player {
     
     private List<Card> hand;
 
-    //Player ID will be simply "1" or "2" and so on. It must be exactly this string for 1-4.
+    //Core.Player ID will be simply "1" or "2" and so on. It must be exactly this string for 1-4.
     private int playerID;
 
     //Constructor, must pass in a playerID string
@@ -32,11 +37,18 @@ public class Player {
         return hand.remove(card);
     }
 
-    public void draw(Deck deck){
+    /*Takes a Deck argument and draws a card from it. This method removes the "top" card from the deck and adds it
+      to a player's hand. When the card is added to the hand, it is placed in order first by suit and then by face value.*/
+    public Card draw(Deck deck){
+
+        if(deck.isEmpty())
+            return null;
 
         Card drawCard = deck.pop();
-        if(hand.isEmpty())
+        if(hand.isEmpty()) {
+
             hand.add(drawCard);
+        }
         else{
 
             ListIterator<Card> iterator = hand.listIterator();
@@ -48,17 +60,16 @@ public class Player {
 
                     iterator.previous();
                     iterator.add(drawCard);
-                    return;
                 }
                 else if(drawCard.getSuit().equals(newCard.getSuit()) &&
                         (drawCard.getFace().compareTo(newCard.getFace()) < 0)){
 
                     iterator.previous();
                     iterator.add(drawCard);
-                    return;
                 }
             }
             iterator.add(drawCard);
         }
+        return drawCard;
     }
 }

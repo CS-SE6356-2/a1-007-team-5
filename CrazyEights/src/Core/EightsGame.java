@@ -1,4 +1,9 @@
+package Core;
 
+import Core.Card;
+import Core.Deck;
+import Core.Face;
+import Core.Suit;
 
 import java.util.*;
 
@@ -7,7 +12,7 @@ public class EightsGame{
     private final int MAX_HAND_SIZE = 13;
     private int numPlayers;
 
-    // Array List of Player class to hold players in the game
+    // Array List of Core.Player class to hold players in the game
     private List<EightsPlayer> gamePlayers;
     private EightsPlayer currentPlayer;
     private EightsPlayer winner;
@@ -92,7 +97,7 @@ public class EightsGame{
         }
     }
 
-    //Player p plays a card c. Return 1 if it is an eights card, 0 if not an eight, or -1 if it's the player's last card;
+    //Core.Player p plays a card c. Return 1 if it is an eights card, 0 if not an eight, or -1 if it's the player's last card;
     public int playCard(Card c){
 
        // Discard card
