@@ -60,12 +60,14 @@ public class Player {
 
                     iterator.previous();
                     iterator.add(drawCard);
+                    return drawCard;
                 }
                 else if(drawCard.getSuit().equals(newCard.getSuit()) &&
                         (drawCard.getFace().compareTo(newCard.getFace()) < 0)){
 
                     iterator.previous();
                     iterator.add(drawCard);
+                    return drawCard;
                 }
             }
             iterator.add(drawCard);
