@@ -176,8 +176,8 @@ public class EightsFrame extends JFrame
         resetButtons();
         handPanel.setVisible(false);
         playerName.setVisible(false);
-        JOptionPane.showMessageDialog(boardPanel, "Core.Player " + game.getCurrentPlayer().getID() + "'s Turn!");
-        playerName.setText("Core.Player " + game.getCurrentPlayer().getID() + "'s " + "Turn");
+        JOptionPane.showMessageDialog(boardPanel, "Player " + game.getCurrentPlayer().getID() + "'s Turn!");
+        playerName.setText("Player " + game.getCurrentPlayer().getID() + "'s " + "Turn");
         playerName.setVisible(true);
         handPanel.setVisible(true);
         paintHand();
@@ -344,7 +344,7 @@ public class EightsFrame extends JFrame
     {
         for(int i = 0; i < playerCount; i++)
         {
-            countList.get(i).setText("Core.Player " + (i+1) + "'s Core.Card Count: " + players.get(i).getHandSize());
+            countList.get(i).setText("Player " + (i+1) + "'s Card Count: " + players.get(i).getHandSize());
             scoreList.get(i).setText("Score: " + players.get(i).getScore());
         }
 
@@ -354,16 +354,16 @@ public class EightsFrame extends JFrame
     //Updates current playerID on screen
     public void updateName()
     {
-        playerName.setText("Core.Player " + game.getCurrentPlayer().getID() + "'s " +
+        playerName.setText("Player " + game.getCurrentPlayer().getID() + "'s " +
                 "Turn");
     }
 
     public void endGUI()
     {
-        StringBuilder endMsg = new StringBuilder("Core.Player " + game.getWinner().getID() + " won this round!\n\n");
+        StringBuilder endMsg = new StringBuilder("Player " + game.getWinner().getID() + " won this round!\n\n");
 
         for(EightsPlayer player: players)
-            endMsg.append(String.format("%-15s", "Core.Player " + player.getID() + ":"));
+            endMsg.append(String.format("%-15s", "Player " + player.getID() + ":"));
 
         endMsg.append("\n");
 
@@ -399,7 +399,9 @@ public class EightsFrame extends JFrame
         if(a == JOptionPane.YES_OPTION)
         {
             game.newRound();
+            paintPlayPile();
             paintHand();
+            updateName();
             resetButtons();
         }
         else
