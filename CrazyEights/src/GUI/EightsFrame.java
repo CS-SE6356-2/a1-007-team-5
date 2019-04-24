@@ -229,8 +229,6 @@ public class EightsFrame extends JFrame
     }
 
     //When the drawbutton is clicked
-    //TODO check if deck is empty and end game
-    //TODO figure out why there is a delay
     public class DrawButtonClicked implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
@@ -347,8 +345,6 @@ public class EightsFrame extends JFrame
             countList.get(i).setText("Player " + (i+1) + "'s Card Count: " + players.get(i).getHandSize());
             scoreList.get(i).setText("Score: " + players.get(i).getScore());
         }
-
-        //TODO ADD SCORE PANEL UPDATE HERE
     }
 
     //Updates current playerID on screen
@@ -368,7 +364,7 @@ public class EightsFrame extends JFrame
         endMsg.append("\n");
 
         for(EightsPlayer player: players)
-            endMsg.append(String.format("%-15d", player.getScore()));
+            endMsg.append(String.format("%-18d", player.getScore()));
 
         endMsg.append("\n");
 

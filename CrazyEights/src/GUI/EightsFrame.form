@@ -136,7 +136,7 @@
                 <properties>
                   <background color="-4475205"/>
                   <horizontalAlignment value="0"/>
-                  <icon value="PNG-cards-82X164/Back_of_card.png"/>
+                  <icon value="resources/PNG-cards-82X164/Back_of_card.png"/>
                   <text value=""/>
                 </properties>
               </component>
