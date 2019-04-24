@@ -1,3 +1,8 @@
+package Core;
+
+import Core.Card;
+import Core.Deck;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -6,7 +11,7 @@ public class Player {
     
     private List<Card> hand;
 
-    //Player ID will be simply "1" or "2" and so on. It must be exactly this string for 1-4.
+    //Core.Player ID will be simply "1" or "2" and so on. It must be exactly this string for 1-4.
     private int playerID;
 
     //Constructor, must pass in a playerID string

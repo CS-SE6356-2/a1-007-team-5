@@ -1,3 +1,7 @@
+package GUI;
+
+import Core.*;
+
 import javax.swing.*;
 import javax.swing.ImageIcon;
 
@@ -172,8 +176,8 @@ public class EightsFrame extends JFrame
         resetButtons();
         handPanel.setVisible(false);
         playerName.setVisible(false);
-        JOptionPane.showMessageDialog(boardPanel, "Player " + game.getCurrentPlayer().getID() + "'s Turn!");
-        playerName.setText("Player " + game.getCurrentPlayer().getID() + "'s " + "Turn");
+        JOptionPane.showMessageDialog(boardPanel, "Core.Player " + game.getCurrentPlayer().getID() + "'s Turn!");
+        playerName.setText("Core.Player " + game.getCurrentPlayer().getID() + "'s " + "Turn");
         playerName.setVisible(true);
         handPanel.setVisible(true);
         paintHand();
@@ -236,7 +240,7 @@ public class EightsFrame extends JFrame
             resetButtons();
 
             if (game.isDeckEmpty()){
-                //Player winner = game.endGame();
+                //Core.Player winner = game.endGame();
                 endGUI();
             }
         }
@@ -266,10 +270,10 @@ public class EightsFrame extends JFrame
 
             int resultCode = game.playCard(selectedCard);
 
-            //Player sheds their entire hand
+            //Core.Player sheds their entire hand
             if(resultCode == -1)
             {
-                //Player winner = game.endGame();
+                //Core.Player winner = game.endGame();
                 frame.endGUI();
             }
 
@@ -340,7 +344,7 @@ public class EightsFrame extends JFrame
     {
         for(int i = 0; i < playerCount; i++)
         {
-            countList.get(i).setText("Player " + (i+1) + "'s Card Count: " + players.get(i).getHandSize());
+            countList.get(i).setText("Core.Player " + (i+1) + "'s Core.Card Count: " + players.get(i).getHandSize());
             scoreList.get(i).setText("Score: " + players.get(i).getScore());
         }
 
@@ -350,16 +354,16 @@ public class EightsFrame extends JFrame
     //Updates current playerID on screen
     public void updateName()
     {
-        playerName.setText("Player " + game.getCurrentPlayer().getID() + "'s " +
+        playerName.setText("Core.Player " + game.getCurrentPlayer().getID() + "'s " +
                 "Turn");
     }
 
     public void endGUI()
     {
-        StringBuilder endMsg = new StringBuilder("Player " + game.getWinner().getID() + " won this round!\n\n");
+        StringBuilder endMsg = new StringBuilder("Core.Player " + game.getWinner().getID() + " won this round!\n\n");
 
         for(EightsPlayer player: players)
-            endMsg.append(String.format("%-15s", "Player " + player.getID() + ":"));
+            endMsg.append(String.format("%-15s", "Core.Player " + player.getID() + ":"));
 
         endMsg.append("\n");
 
