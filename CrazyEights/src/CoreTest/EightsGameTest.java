@@ -1,35 +1,41 @@
 package CoreTest;
 
-import static org.junit.Assert.*;
+import Core.*;
+
+import java.util.List;
+
 
 public class EightsGameTest {
 
     @org.junit.Test
-    public void newRound() {
+    public static void newRound() {
+
+        EightsGame game = new EightsGame(4);
+        List<EightsPlayer> list = game.getPlayers();
+
+        for(EightsPlayer player: list){
+
+            System.out.println("Player " + player + ":\nHand: " + player.getHand() + "\n");
+        }
+
+        System.out.println("After newRound()");
+        game.newRound();
+        for(EightsPlayer player: list){
+
+            System.out.println("Player " + player + ":\nHand: " + player.getHand() + "\n");
+        }
     }
 
     @org.junit.Test
-    public void getPlayers() {
+    public static void canPlayCard() {
     }
 
     @org.junit.Test
-    public void getCurrentPlayer() {
+    public static void canDrawCard() {
     }
 
     @org.junit.Test
-    public void getWinner() {
-    }
-
-    @org.junit.Test
-    public void canPlayCard() {
-    }
-
-    @org.junit.Test
-    public void canDrawCard() {
-    }
-
-    @org.junit.Test
-    public void isDeckEmpty() {
+    public static void isDeckEmpty() {
     }
 
     @org.junit.Test
@@ -56,7 +62,4 @@ public class EightsGameTest {
     public void changeSuit() {
     }
 
-    @org.junit.Test
-    public void getPlayPile() {
-    }
 }

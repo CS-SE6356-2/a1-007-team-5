@@ -74,4 +74,9 @@ public class Player {
         }
         return drawCard;
     }
+
+    public String toString(){
+
+        return String.valueOf(playerID);
+    }
 }
