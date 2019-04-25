@@ -130,13 +130,13 @@ public class EightsFrame extends JFrame
     {
         private Card card;
 
-        public CardButton(Card c)
+        CardButton(Card c)
         {
             card = c;
             this.addActionListener(new CardButtonClicked(this));
         }
 
-        public Card bGetCard()
+        Card bGetCard()
         {
             return card;
         }
@@ -171,7 +171,7 @@ public class EightsFrame extends JFrame
         return tmp;
     }
 
-    public void nextPlayer(){
+    private void nextPlayer(){
 
         resetButtons();
         handPanel.setVisible(false);
@@ -184,7 +184,7 @@ public class EightsFrame extends JFrame
 
     }
 
-    public void resetButtons(){
+    private void resetButtons(){
 
         updateScore();
         playButton.setVisible(false);
@@ -259,7 +259,7 @@ public class EightsFrame extends JFrame
         //Needed to perform actions on the frame
         EightsFrame frame;
 
-        public PlayButtonClicked(EightsFrame f)
+        PlayButtonClicked(EightsFrame f)
         {
             frame = f;
         }
@@ -278,6 +278,7 @@ public class EightsFrame extends JFrame
             //Eights card was played
             if(resultCode == 1)
             {
+                paintPlayPile();
                 changeSuitPanel.setVisible(true);
                 actionPanel.setVisible(false);
             }
@@ -287,7 +288,6 @@ public class EightsFrame extends JFrame
             {
                 paintPlayPile();
                 nextPlayer();
-
             }
         }
     }
@@ -297,7 +297,7 @@ public class EightsFrame extends JFrame
     {
         CardButton gCard;
 
-        public CardButtonClicked(CardButton c)
+        CardButtonClicked(CardButton c)
         {
             gCard = c;
         }
@@ -322,7 +322,7 @@ public class EightsFrame extends JFrame
         //Needed to perform actions on the frame
         Suit suit;
 
-        public SuitButtonClicked(Suit s)
+        SuitButtonClicked(Suit s)
         {
             suit = s;
         }
@@ -338,7 +338,7 @@ public class EightsFrame extends JFrame
     }
 
     //Updates players scores in their JLabels at the top of the screen
-    public void updateScore()
+    private void updateScore()
     {
         for(int i = 0; i < playerCount; i++)
         {
@@ -348,13 +348,13 @@ public class EightsFrame extends JFrame
     }
 
     //Updates current playerID on screen
-    public void updateName()
+    private void updateName()
     {
         playerName.setText("Player " + game.getCurrentPlayer().getID() + "'s " +
                 "Turn");
     }
 
-    public void endGUI()
+    private void endGUI()
     {
         StringBuilder endMsg = new StringBuilder("Player " + game.getWinner().getID() + " won this round!\n\n");
 
@@ -388,7 +388,7 @@ public class EightsFrame extends JFrame
         for(EightsPlayer player: players)
             endMsg.append(String.format("%-15s", player.getScore()));
 
-        endMsg.append("Total\n\n Play another round?");
+        endMsg.append("Total\n\n Play another round? (Cancel and No will close game)");
 
         int a=JOptionPane.showConfirmDialog(boardPanel,endMsg.toString());
 
