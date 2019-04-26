@@ -1,5 +1,7 @@
 package CoreTest;
 
+import Core.EightsPlayer;
+
 public class TestRunner {
 
     public static void main(String args[]){
@@ -12,6 +14,14 @@ public class TestRunner {
         EightsGameTest.pass();
         EightsGameTest.calcScore();
         EightsGameTest.changeSuit();
+        DeckTest.shuffle();
+        DeckTest.reset();
         DeckTest.pop();
+        DeckTest.push();
+        DeckTest.isEmpty();
+        EightsPlayerTest.play();
+        EightsPlayerTest.draw();
+        EightsPlayerTest.updateScore();
+
     }
 }
