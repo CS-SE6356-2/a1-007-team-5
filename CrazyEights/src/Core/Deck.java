@@ -52,4 +52,9 @@ public class Deck {
         public boolean isEmpty(){
             return playDeck.isEmpty();
         }
+
+        public String toString(){
+
+            return playDeck.toString();
+        }
     }

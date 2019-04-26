@@ -7,22 +7,6 @@ import static org.junit.Assert.*;
 public class EightsPlayerTest {
 
     @Test
-    public void getHand() {
-    }
-
-    @Test
-    public void getHandSize() {
-    }
-
-    @Test
-    public void getID() {
-    }
-
-    @Test
-    public void setID() {
-    }
-
-    @Test
     public void play() {
     }
 

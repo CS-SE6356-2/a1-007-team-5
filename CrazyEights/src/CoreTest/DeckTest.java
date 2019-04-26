@@ -18,17 +18,22 @@ public class DeckTest {
     }
 
     @Test
-    public void pop() {
+    public static void pop() {
 
+        System.out.println("----- TESTING Deck.pop() -----");
+
+        System.out.println("Creating new Deck...");
         Deck testDeck = new Deck();
+        System.out.println(testDeck);
 
-        Card c = new Card(Face.ACE, Suit.CLUBS);
+        System.out.println("Popping...");
+        while(!testDeck.isEmpty()){
 
-        testDeck.push(c);
+            System.out.println(testDeck.pop());
+        }
 
-        assertEquals(c, testDeck.pop());
-
-
+        System.out.println("Popping empty Deck...");
+        System.out.println(testDeck.pop());
     }
 
     @Test
