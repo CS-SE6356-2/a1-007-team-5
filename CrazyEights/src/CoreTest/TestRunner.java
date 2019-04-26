@@ -9,6 +9,9 @@ public class TestRunner {
         EightsGameTest.canDrawCard();
         EightsGameTest.drawCard();
         EightsGameTest.playCard();
+        EightsGameTest.pass();
+        EightsGameTest.calcScore();
+        EightsGameTest.changeSuit();
         DeckTest.pop();
     }
 }

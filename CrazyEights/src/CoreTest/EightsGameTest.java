@@ -7,7 +7,7 @@ import java.util.List;
 
 public class EightsGameTest {
 
-    @org.junit.Test
+
     public static void newRound() {
 
         System.out.println("----- TESTING EightsGame.newRound() -----");
@@ -29,7 +29,7 @@ public class EightsGameTest {
         }
     }
 
-    @org.junit.Test
+
     public static void canPlayCard() {
 
         System.out.println("----- TESTING EightsGame.canPlayCard() -----");
@@ -51,7 +51,7 @@ public class EightsGameTest {
         }
     }
 
-    @org.junit.Test
+
     public static void canDrawCard() {
 
         System.out.println("----- TESTING EightsGame.canDrawCard()");
@@ -65,7 +65,7 @@ public class EightsGameTest {
         }
     }
 
-    @org.junit.Test
+
     public static void drawCard() {
 
         System.out.println("----- TESTING EightsGame.drawCard -----");
@@ -79,7 +79,7 @@ public class EightsGameTest {
         System.out.println();
     }
 
-    @org.junit.Test
+
     public static void playCard() {
 
         System.out.println("----- TESTING EightsGame.playCard() -----");
@@ -98,20 +98,56 @@ public class EightsGameTest {
         }
     }
 
-    @org.junit.Test
-    public void pass() {
+
+    public static void pass() {
+
+        System.out.println("----- TESTING EightsGame.pass() -----");
+        EightsGame game = new EightsGame(4);
+        EightsPlayer p = game.getCurrentPlayer();
+        System.out.println("Current Player ID: " + p.getID());
+        game.pass();
+        p = game.getCurrentPlayer();
+        System.out.println("New Current Player ID: " + p.getID());
+
     }
 
-    @org.junit.Test
-    public void calcScore() {
+
+    public static void calcScore() {
+
+        System.out.println("----- TESTING EightsGame.calcScore() -----");
+        EightsGame game = new EightsGame(4);
+        game.calcScore(game.getCurrentPlayer());
+        System.out.println("Winner's score should be 15 while other players scores should be -5.");
+        List<EightsPlayer> p = game.getPlayers();
+        for(int i = 0; i < p.size(); i++){
+
+            System.out.println("Player " + (i + 1) + " Score: " + p.get(i).getScore());
+
+        }
+
+
     }
 
-    @org.junit.Test
-    public void findWinner() {
-    }
 
-    @org.junit.Test
-    public void changeSuit() {
+
+
+    public static void changeSuit() {
+
+        System.out.println("----- TESTING EightsGame.changeSuit() -----");
+        EightsGame game = new EightsGame(4);
+        System.out.println("Current play pile face card is " + game.getPlayPile().toString());
+        System.out.println("Changing suit...");
+        Suit s = game.getPlayPile().getSuit();
+        if(s != Suit.SPADES){
+
+            s = Suit.SPADES;
+        }else{
+
+            s = Suit.DIAMONDS;
+        }
+        System.out.println("Should results in the card being an eight of " + s);
+        game.changeSuit(s);
+        System.out.println("New play pile face card is " + game.getPlayPile().toString());
     }
 
 }
