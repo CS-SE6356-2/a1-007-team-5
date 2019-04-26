@@ -233,14 +233,12 @@ public class EightsFrame extends JFrame
     {
         public void actionPerformed(ActionEvent e)
         {
-            game.drawCard();
-            paintHand();
-            resetButtons();
 
-            if (game.isDeckEmpty()){
-                //Core.Player winner = game.endGame();
+            if (game.drawCard()){
                 endGUI();
             }
+            paintHand();
+            resetButtons();
         }
     }
 
@@ -350,47 +348,82 @@ public class EightsFrame extends JFrame
     //Updates current playerID on screen
     private void updateName()
     {
-        playerName.setText("Player " + game.getCurrentPlayer().getID() + "'s " +
-                "Turn");
+        playerName.setText("Player " + game.getCurrentPlayer().getID() + "'s " + "Turn");
     }
 
-    private void endGUI()
-    {
-        StringBuilder endMsg = new StringBuilder("Player " + game.getWinner().getID() + " won this round!\n\n");
+    private String getTieMsg(){
+
+        StringBuilder tieMsg = new StringBuilder();
+        tieMsg.append("There was a tie!\n");
+
+        for(EightsPlayer player: players)
+            tieMsg.append(String.format("%-15s", "Player " + player.getID() + ":"));
+        tieMsg.append("\n");
+
+        for(EightsPlayer player: players)
+            tieMsg.append(String.format("%-18d", player.getScore()));
+        tieMsg.append("\n");
+
+        for(EightsPlayer player: players)
+            tieMsg.append(String.format("%-15s", "+0"));
+        tieMsg.append("\n");
+
+        for(EightsPlayer player: players)
+            tieMsg.append(String.format("%-18d", player.getScore()));
+
+        tieMsg.append("Total\n\n Play another round? (Cancel and No will close game)");
+
+        return tieMsg.toString();
+    }
+
+    private String getEndMsg(EightsPlayer winner){
+
+        StringBuilder endMsg = new StringBuilder();
+
+        endMsg.append("Player " + winner.getID() + " won this round!\n\n");
 
         for(EightsPlayer player: players)
             endMsg.append(String.format("%-15s", "Player " + player.getID() + ":"));
-
         endMsg.append("\n");
 
         for(EightsPlayer player: players)
             endMsg.append(String.format("%-18d", player.getScore()));
-
         endMsg.append("\n");
 
         int pointsWon = 0;
-
         for(EightsPlayer player: players){
-            if(player != game.getWinner())
+            if(player != winner)
                 pointsWon += player.getHand().size();
         }
 
         for(EightsPlayer player: players){
-            if(player != game.getWinner())
+            if(player != winner)
                 endMsg.append(String.format("%-15d", -player.getHand().size()));
             else
                 endMsg.append(String.format("%-+15d", pointsWon));
         }
-
         endMsg.append("\n\n");
-        game.calcScore();
 
+        game.calcScore(winner);
         for(EightsPlayer player: players)
             endMsg.append(String.format("%-15s", player.getScore()));
 
         endMsg.append("Total\n\n Play another round? (Cancel and No will close game)");
 
-        int a=JOptionPane.showConfirmDialog(boardPanel,endMsg.toString());
+        return endMsg.toString();
+    }
+
+    private void endGUI()
+    {
+        String endMsg;
+        EightsPlayer winner = game.endGame();
+
+        if(winner == null)
+            endMsg = getTieMsg();
+        else
+            endMsg = getEndMsg(winner);
+
+        int a=JOptionPane.showConfirmDialog(boardPanel,endMsg);
 
         if(a == JOptionPane.YES_OPTION)
         {

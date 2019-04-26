@@ -15,7 +15,6 @@ public class EightsGame{
     // Array List of Core.Player class to hold players in the game
     private List<EightsPlayer> gamePlayers;
     private EightsPlayer currentPlayer;
-    private EightsPlayer winner;
 
     // Create card deck to draw from
     private Deck drawDeck;
@@ -61,16 +60,22 @@ public class EightsGame{
             drawDeck.shuffle();
             turn_card = drawDeck.pop();
         }
-
         playPile = turn_card;
-
     }
 
     public List<EightsPlayer> getPlayers() { return gamePlayers; }
 
     public EightsPlayer getCurrentPlayer() { return currentPlayer; }
 
-    public EightsPlayer getWinner() { return winner; }
+
+    public EightsPlayer endGame(){
+
+        EightsPlayer winner = getWinner();
+        if(winner == null)
+            return null;
+
+        return winner;
+    }
 
     // Method to check if selected card can be played by user
     public boolean canPlayCard(Card c){
@@ -84,17 +89,12 @@ public class EightsGame{
         return currentPlayer.getHandSize() < MAX_HAND_SIZE;
     }
 
-    public boolean isDeckEmpty(){
-
-        return drawDeck.isEmpty();
-    }
     // Return true if deck is empty otherwise false
-    public void drawCard(){
+    public boolean drawCard(){
 
         currentPlayer.draw(drawDeck);
-        if(drawDeck.isEmpty()){
-            findWinner();
-        }
+
+        return drawDeck.isEmpty();
     }
 
     //Core.Player p plays a card c. Return 1 if it is an eights card, 0 if not an eight, or -1 if it's the player's last card;
@@ -108,7 +108,6 @@ public class EightsGame{
 
         if(currentPlayer.getHandSize() == 0){
 
-            winner = currentPlayer;
             return -1;
         }
         nextPlayer();
@@ -123,9 +122,29 @@ public class EightsGame{
         nextPlayer();
     }
 
-    //Calculates score
-    public void calcScore(){
+    //Sets winner equal to the player with smallest hand size
+    private EightsPlayer getWinner(){
 
+        //set winner equal to player with smallest hand size
+        EightsPlayer winner = gamePlayers.get(0);
+        for(EightsPlayer player: gamePlayers){
+
+            if(player.getHandSize() < winner.getHandSize()){
+                winner = player;
+            }
+        }
+        //set winner to null if more than 1 player has the lowest hand size
+        for(EightsPlayer player: gamePlayers){
+
+            if(player != winner && player.getHandSize() == winner.getHandSize())
+                winner = null;
+        }
+        return winner;
+    }
+
+    public void calcScore(EightsPlayer winner){
+
+        //Calculate and update player's scores
         for(EightsPlayer player: gamePlayers){
 
             if (player != winner){
@@ -136,19 +155,6 @@ public class EightsGame{
             }
         }
     }
-
-    //Sets winner equal to the player with smallest hand size
-    public void findWinner(){
-
-        winner = gamePlayers.get(0);
-        for(EightsPlayer player: gamePlayers){
-
-            if(player.getHandSize() < winner.getHandSize()){
-                winner = player;
-            }
-        }
-    }
-
     public void changeSuit(Suit s) {
 
         switch(s){
